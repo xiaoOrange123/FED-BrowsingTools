@@ -1,0 +1,1582 @@
+
+
+
+更新与 2016/11/16
+
+
+
+
+
+
+
+待学习：
+	正在进行   
+    angularJs 基础
+
+
+    购物车
+    jQuery mobile
+    nodejs 基础
+    reactJS
+	http协议
+    面向对象,原型对象
+    ajax  同，异步
+
+
+必须知道：
+    a 标签想要给宽高必须display：inline-block或者block
+        1  清除默认效果
+        2  居中
+
+
+
+
+
+
+
+
+text-align:justify;   // 文本2端对齐   justify
+
+
+面试网站：
+智联，猎聘，51，拉钩还有boss
+
+
+
+JS跨域：
+    我们经常会在页面上使用ajax请求访问其他服务器的数据,此时,客户端会出现跨域问题.跨域问题是由于javascript语言安全限制中的同源策略造成的.
+    正常情况下不允许跨域；
+    想要实现跨域有很多实现方案：
+        见：    
+        http://www.cnblogs.com/oneword/archive/2012/12/03/2799443.html
+
+javaScript的同源策略
+    只有域名、协议、端口都相同，JavaScript脚本才能读取和修改这个页面文档的属性，这里的同一来源指的是主机名、协议和端口号的组合
+    或者说：同源策略是指一段脚本只能读取来自同一来源的窗口和文档的属性
+
+
+
+我对前端开发的看法
+1. 什么是前端？
+    主要工作领域是浏览器,核心技术包括 JavaScript，css，html 等.还要处理服务器通信,还需要与产品经理、交互设计，共同完成一些交互设计。
+2. 前端工作有技术含量吗？
+    1. 全浏览器兼容。
+    2. 横向技能面要广。懂交互设计；懂视觉设计；略懂后台技术；精通http协议；linux操作；shell；vim；git；svn；至少熟练使用一门后端语言（java，c#，php，python）；至少使用过一个MVC开发框架，还有前端的各种开源项目（jquery,requirejs,seajs,bootstrap,yui…）；还要能够灵活运用“面向对象”，“面向过程”，“函数式”的编程方法...
+    3. 纵向技能要深。js,css,html5,css3,…
+    4. 学习能力强，持续学习的意愿。
+    5. 关注用户体验，懂得交互设计。
+3. 前端工程师应该具备怎样的知识结构？
+    1 
+4. 前端在产品研发团队中的地位与价值？
+    给我机会，我能承担的更多。
+5. 前端工程师的未来？
+    WEB应用，重心偏移动端
+
+
+开发工具：
+	1 硬件项目：
+	window7，   华硕电脑；
+
+	2 软件项目：
+	用过的工具,PS,AI（illustrator）,sprites,picpick
+
+
+
+4 项目中遇到的特效：
+    評分,进度条,倒计时,表格与表单特效,图片放大同时变色,下拉菜单,回到顶部锚跳转,全站搜索,轮播,客服在线交流
+
+
+5 购物车
+
+
+6 正则  邮箱 和手机
+	Tel： 
+         var Tel = /^1(3|4|5|8)\d{9}$/;
+    Email：
+         var Email = /^([a-zA-Z0-9_\.\-])+\@([a-zA-Z0-9\-])+\.([a-zA-Z0-9]{2})+$/;  
+
+7 常用哪些浏览器，现在什么版本
+	firefox  49.0.0.6103
+	 google  51.0.2704.106
+	 opera 40.0.2308.54
+
+8 a标签包裹img标签在各个浏览器上会有什么效果，会有什么差别
+	a标签必须display：block ；
+	img{vertical-align: bottom;}
+	能够处理img下面留白
+
+9 常见的各浏览器兼容，最少说三个  
+	1 IE6/IE7下出现的各种错位，可以加入 zoom:1来解决。
+	2 文字本身的大小不兼容。同样是font-size:14px的宋体文字，在不同浏览器下占的空间是不一样的，ie下实际占高16px，下留白3px，ff下实际占高17px，上留白1px，下留白3px，opera下就更不一样了。解决方案：给文字设定 line-height 。确保所有文字都有同样的 line-height 值。
+	3   padding  问题
+	padding   5px   4px   3px   1px   FireFox 无法解释简写,
+	必须改成：   padding-top:5px;   padding-right:4px;   padding-bottom:3px;   padding-left:1px;
+    4 css透明
+        ie: filter = Alpha(opacity=60)
+        w3c: opacity:0.6
+            opacity 透明，子元素会继承透明属性。
+    5 IE8下背景半透明background:rgba 无效：
+    使用ie的滤镜属性
+    filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr=#AARRGGBB,endColorStr=i#AARRGGBB)
+
+
+10  js兼容性问题，最少3个
+	1 获取浏览器view宽度：
+		document.documentElement.clientWidth
+		|| document.body.clientWidth;
+		前者是通用的  后者是IE的
+	2 事件监听函数的问题 
+		标准浏览器的写法 addEventListener()和IE的写法 attachEvent()。 
+		if(objs.attachEvent){
+			//代码 alert("低版本的IE浏览器")
+		}else{
+			//代码
+		}
+		从IE9开始已经支持addEventListener方法，用这个代码判断是否为IE浏览器已经过时。
+	3 阻止默认事件
+		标准写法 preventDefault()和IE写法 returnValue();
+		• 在W3c中，使用preventDefault（）方法；
+		• 在IE下设置window.event.returnValue = false;
+
+11 hack兼容
+	区分ie9，ie8，ie7的hack写法
+	1 IE8以及以下
+ 		分号之前属性时候添加”\9″
+		 color:red\9; /*IE8以及以下版本浏览器*/
+	2 IE7以及以下
+		使用”*”号
+		*color:green; /*IE7及其以下版本浏览器*/
+	3 IE6浏览器
+		下划线”_”
+		_color:purple; /*IE6浏览器*/
+	总结 
+		color:blue; /*所有浏览器*/
+		color:red\9; /*IE8以及以下版本浏览器*/
+		*color:green; /*IE7及其以下版本浏览器*/
+    	_color:purple; /*IE6浏览器*/
+
+    条件注释：
+
+12 常用的浏览器插件
+	谷歌 Editor Lite
+		一个在线编辑html代码的插件，可以当成一个简洁版的Dw编辑器，一些少点的代码可以在此插件内，很快的编写。
+	谷歌IE Tab
+		在Chrome中打开IE浏览器标签页，你可以打开一个标签来运行Internet Explorer，让你看到的网页在IE浏览器看起来如何。
+    fireBug
+        firebox、
+
+        Chrome Web Store中并没有Firebug扩展（倒是有个叫Firebug的游戏），Firebug官网提供了一个Firebug Lite，有Chrome版本的：Firebug Lite : Firebug
+		顾名思义，是一个简化版的Firebug
+
+16 工作中用的插件组件
+    seajs
+    遵循CMD规范的JavaScript模块加载框架，可以实现JavaScript的模块化开发及加载机制。
+    原则是仅做一件事，做好一件事（github上的一个和开源项目）
+
+	Webpack  
+		1 模块加载器兼打包工具，它能把各种资源，例如JS（含JSX）、coffee、样式（含less/sass）、图片等都作为模块来使用和处理。
+		2 以 commonJS 的形式来书写脚本滴，但对 AMD/CMD 的支持也很全面，方便旧项目进行代码迁移。
+
+	FIS （使用nodeJS写的）
+		专为解决前端开发中自动化工具，性能优化，模块化框架，开发规范，代码部署，开发流程等问题的工具框架
+
+13 常逛的前端学习地方
+	http://www.csdn.net/   CSDN祖国程序员大本营
+	张鑫旭  鑫空间
+	汇智网
+
+
+14 线程
+
+
+15 node.js的优点，干嘛用的
+	
+16 http协议
+	
+17 工作中遇到的问题，怎么解决的
+
+18.前端经常跟ui打交道，如果有时候ui给你的效果图，前端实现不了，怎么办，怎么解决
+	1 所有的东西都必须出效果图，并且所有团队成员达成一致，有可执行性。
+	所有的字体，间距，颜色，必须约定统一并且完全标识清楚。
+	杜绝直接这么说那么干的做法。
+	2 
+	另外讲的时候是需要技巧的，可以先正面肯定一下他的劳动成果或努力的结果，
+	然后说，我这儿看到几点问题，跟你交流一下，然后布啦布啦，
+	3  与用户：
+	你这个页面等上线后，在用户看来2个页面看到的按钮不一样，
+	感觉很外行，从而导致的结果就是下次不在访问，这样用户就会丢失。
+	你看有没有必要重新考虑一下。
+
+19  html5 离线储存，本地储存
+    本地储存（即:客户端储存,使用 JavaScript 来存储和访问数据。）
+        HTML5 提供了两种在客户端存储数据的新方法：(5MB，之前都是由cookie完成的，但是cookie不适合大数据的储存，)
+            localStorage - 没有时间限制的数据存储
+            sessionStorage - 针对一个 session 的数据存储
+        1 localStorage 方法：（localStorage 方法存储的数据没有时间限制。）
+        2 sessionStorage 方法：（当用户关闭浏览器窗口后，数据会被删除。）
+
+    在HTML5中，本地存储是一个window的属性，包括localStorage和sessionStorage
+
+20 事件写在标签里面 和写在 js 里面有什么差别（即：html 直接在标签上绑定事件与js动态绑定事件有何区别）
+	1 写在标签： 只能是这个html页面才能用.
+      写在标签： 不利于维护，无法知道这一个页面里面，到底绑定了多少个东西。出错了之后都不知道去哪里找那个错误的function name；对于同事，同事无法找到；
+	2 写在外部： 其它文件也能引用
+	  写在外部： 比较容易维护，结构（html） 表现（css）和行为（js）分离
+		为什么分离：
+		1 分离更容易维护。 改变css样式立即生效
+		2.文件能互相关联，html文件能引用不同的外部文件
+		3 使代码清晰简洁明了
+
+21 闭包 ，  什么是闭包，怎么用，优缺点
+    主要是为了：设计私有的方法和变量。
+     特性：
+         1.函数嵌套函数
+         2.函数内部可以引用外部的参数和变量
+         3.参数和变量不会被垃圾回收机制回收
+
+    闭包的作用：
+        1 保护函数内的变量安全。以最开始的例子为例，函数a中i只有函数b才能访问，而无法通过其他途径访问到，因此保护了i的安全性。 
+        2 在内存中维持一个变量。依然如前例，由于闭包，函数a中i的一直存在于内存中，因此每次执行c()，都会给i自加1。 
+        3 通过保护变量的安全实现JS私有属性和私有方法（不能被外部访问） 
+        4 私有属性和方法在Constructor外是无法被访问的 
+
+    理解：
+        就是在函数f1的内部，再定义一个函数f2。使全局得到f1的局部变量；f2就是一个闭包，且f1中的变量只会被f2访问到。
+        用途：一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中直到闭包函数被内存回收掉为止。
+        避免全局命名空间被污染；避免污染全局变量
+
+    缺点：
+        1 使用闭包必须维护额外的作用域，所有过度使用它们可能会占用大量的内存;由于闭包会携带包含它的函数的作用域，因此会比其他函数占用更多的内存。过度使用闭包可能会导致内存占用过多，所以只有在绝对必要时再考虑使用闭包。解决方法是，在退出函数之前，将不使用的局部变量全部删除。 
+        2 闭包会在父函数外部，改变父函数内部变量的值。
+
+	demo : 
+       function A(){
+            var text="hello world";
+            function B(){
+            console.log(text);
+            }
+            return B;
+        }
+        var c=A();
+
+
+24 js的回收机制：
+    在Javascript中，如果一个对象不再被引用，那么这个对象就会被GC（garbage collection）回收。上面的示例代码中A是B的父函数，而B被赋给了一个全局变量C（全局变量的生命周期直至浏览器卸载页面才会结束），这导致B始终在内存中，而B的存在依赖于A，因此A也始终在内存中，不会在调用结束后，被垃圾回收机制（garbage collection）回收。
+
+22 听说过哪些前端框架（？）
+    React ， Ember ， Angular
+ 	React：
+ 		1 Facebook开源的一个用于构建用户界面的Javascript库
+ 		2 组件化
+ 		3 React定义组件的方式和AngularJS截然不同。如果说HTML是一个轮子，AngularJS 的指令/Directive则是给这个轮子镶了个金边，而React，重新造了个轮子： JSX。
+ 		4 React引入了 虚拟DOM的概念：开发者操作虚拟DOM，React在必要的时候将它们渲染到真正的 DOM上：
+ 			A 容易引入不同的渲染引擎容易引入不同的渲染引擎
+
+		如何创建react：
+			createElement(type,[props],[children...]) - 在虚拟DOM上（script内）创建指定的React元素
+			render(element,container,[callback]) - 将虚拟DOM上的对象渲染到真实DOM上
+
+		React 的优点：
+			1 React速度很快
+			2 跨浏览器兼容
+ 			3 模块化
+ 			4 单向数据流让事情一目了然
+ 			5 React与其它框架/库兼容性好
+
+	Angular ：（Angular2要求浏览器支持ES6+,AngularJS有五个主要核心特性）
+		1 AngularJS定义组件的方式和React截然不同。如果说HTML是一个轮子，AngularJS 的指令/Directive则是给这个轮子镶了个金边，而React，重新造了个轮子： JSX。
+		2 双向数据绑定 —— 实现了把model与view完全绑定在一起，model变化，view也变化，反之亦然。
+		3 模板 —— 在AngularJS中，模板相当于HTML文件被浏览器解析到DOM中，AngularJS遍历这些DOM，也就是说AuguarJS把模板当做DOM来操作，去生成一些指令来完成对view的数据绑定。
+		4 依赖注入 —— AngularJS拥有内建的依赖注入子系统，可以帮助开发人员更容易的开发，理解和测试应用。
+		5 指令 —— 可以用来创建自定义的标签，也可以用来装饰元素或者操作DOM属性。
+		6 MVVM —— 吸收了传统的MVC设计模式针但又并不执行传统意义上的MVC，更接近于MVVM(Moodel-View-ViewModel)。
+
+		angujarJS的优点：
+
+
+23 路由（route）：是指根据url分配到对应的处理程序。
+	1 不同的请求地址会交给路由处理来转发给相应的控制器处理（路由就可以在转发前修改转发地址）
+	2 使用路由时，url也是随着改变的可以直接复制或收藏当前页的url给别人，使用js并不更新url不便于用户收藏当前页
+
+
+
+
+js有三个部分组成
+ECMAScript,DOM,BOM
+
+微软公司早期版本的浏览器仅支持自己的vbscript，但后来不得不加入javascript
+IE3中搭载Javascipt的克隆版本，命名为jscript
+
+
+position的定位原点
+    左上角
+
+absolute可以相对absolute的父级定位吗
+    可以，父级只要不为static
+
+css3的弹性盒模型
+    flexbox；适用于应用程序，及小规模的布局
+    Flexbox是壹个模块（目前是w3c候选的推荐） 
+    主要思想是让容器有能力来改变项目的宽度和高度，以填满可用空间
+
+    支持flexbox的：Bootstrap
+
+为什么不用*   margin 0
+    1 因为得根据自己的实际需求，* 表示所有，有些我并不希望被重置
+    2 样式无缘无故增加了很多的渲染
+    3 CSS reset平白无故的增加了CSS文件的大小
+    
+HTML全称：
+    超文本标记语言
+    Hypertext Markup Language
+
+CSS全称：
+    层叠样式表
+    Cascading Style Sheets
+
+JS全称：
+    一种直译式脚本语言
+    JavaScript
+
+IE浮动产生的双倍距离有多大
+    1 并不是所有的margin边距方向都会产生双边距，出现双边距的条件是当float浮动元素的浮动方向和margin边距的方向一致时才会出现。
+    2 同一行中如果有多个浮动元素，只有第一个浮动元素会出现双边距bug，其它的浮动元素则不会。
+    3 给第一个浮动元素的css属性加上display:inline;属性就可以了。
+
+加分项：
+掌握SEO，代码优化
+代码编写规范，书写习惯良好，
+熟悉各种浏览器平台的特性，能够很好地解决兼容问题
+ 虽然我长得不帅,但是可以用表情取胜 ：）
+ 
+应具备的素质，技能： 
+具有深厚的美术功底及良好的创意构思能力，很好把握视觉色彩与网站布局，思想敏锐活跃，具有丰富的视觉创作经验和独到的审美，具备网站页面的整体美工创意、设计、策划能力；
+
+7、善于与人沟通，良好的团队合作精神和高度的责任感，能够承受压力，有创新精神，保证工作质量；
+
+8、细致耐心,良好的沟通与协调能力,高度的责任感意识。有较强的上进心,能够持续不断的学习新知识,具有独立思考和工作的素质。
+
+空格有多少像素
+    看网页使用的字体大小
+
+口号：
+我们有支优秀的专家技术团队，自尊、自强、创新、实效、是我们的态度！诚信、认真、微笑服务、服务至上、是我们的服务理念
+
+reset CSS:重置
+    body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{margin:0;}
+    ol,li,ul{margin:0; padding:0;}
+    :focus { outline: 0 none; }   
+    table { border-collapse: collapse; border-spacing: 0; }
+    caption, th, td { font-weight: normal; text-align: left; }
+    a img, iframe { border: medium none; }
+    ol, ul { list-style: none outside none; }
+    input, textarea, select, button { font-family: inherit; font-size: 100%; }
+    body { font-family: "微软雅黑"; font-size: 12px;}
+
+Bootstrap相关：
+    2016/9/12 现在使用的是版本3，（支持IE8）
+    而bootstrap4：
+        1 从Less迁移到Sass，Libsass，Bootstrap的编译速度比以前更快；
+        2 支持选择弹性盒模型（flexbox）
+        3 不再支持IE8，使用rem和em单位代替px单位
+        4 使用新的技术：ES6
+        5 代码更精简：123KB>88KB
+
+
+你的公司在哪？ 
+    松江区石湖荡镇长塔路945弄22号323室
+
+做什么的？   
+    主要是做CRM软件，客户信息的跟踪，管理以及分析，还承接网站外包
+
+你的职位？
+    WEB开发
+你的部门？
+    研发部 
+
+楼宇控制系统有的是什么品牌的显示器：
+    SANC
+
+自己认为很好的：
+    兼容性；优化；学习能力强，动手能力强，抗压能力强，对新技术有强烈的好奇心；
+ 
+在线压缩：
+    http://tool.css-js.com/compressor.html
+    另：把JS文件用匿名函数的方式封装起来，对外只给一个接口。这样JS压缩引擎就可以把你匿名函数中不对外开放的内部变量名称都给替换成a,b,c,d这样的单字符，很能节省体积。
+
+AngularJs:
+    AngularJS还在成长,适合于开发表单和报表类的应用程序，非常适合前端交互非常多的应用,不适合开发大型复杂项目,他和jQuery的区别就是jQuery是操作DOM，简化DOM操作的，而AngularJS的设计目标是简化Web应用的构建
+
+table和iframe布局的缺点：
+    1 杜绝首页中出现Table布局。因为传统的table布局，是把内容全部加载完成后，才渲染样式，延迟效果严重。而iframe页面框架，是非语义的，即使为空也会有较大资源消耗，还会阻止页面的onload。
+    2 搜索引擎不会抓取到iframe里的内容，重要内容不要放在框架中。
+
+前端开发流程
+http://developer.51cto.com/art/201309/409380_all.htm
+    本地开发环境的初始化
+        使用的工具是Node.js和NPM
+    第三方依赖的管理
+        bower，取原始的github repository，没有更新延迟的问题，所有包都是针对纯前端开发项目的。
+    源文件编译
+        工具是grunt，他本身主要是基于Node.js的文件操作包，其中有许多插件可以让我们完成js文件的compile和compress、sass到css的转换等等操作。
+    自动化测试
+        工具是Jasmine，它grunt中同样有一个插件：grunt-contrib-jasmine。
+    发布到pipeline和各个环境 
+
+B/S架构：(Browser/Server，浏览器/服务器模式)
+    客户机上只要安装一个浏览器，服务器安装SQL Server、Oracle、MYSQL等数据库。浏览器通过Web Server 同数据库进行数据交互。
+
+
+
+
+
+
+
+
+==========HTML5==========
+一、新增标签
+1、<article> 标记定义一篇文章
+2、<header> 标记定义一个页面或一个区域的头部
+3、<nav> 标记定义导航链接
+4、<section> 标记定义一个区域
+5、<aside> 标记定义页面内容部分的侧边栏
+6、<hgroup> 标记定义文件中一个区块的相关信息
+7、<figure> 标记定义一组媒体内容以及它们的标题
+8、<figcaption> 标签定义 figure 元素的标题。
+9、<footer> 标记定义一个页面或一个区域的底部
+10、<dialog> 标记定义一个对话框(会话框)类似微信
+
+11、<video> 标记定义一个视频
+12、<audio> 标记定义音频内容
+13、<source> 标记定义媒体资源
+14、<canvas> 标记定义画布
+
+15、<menu> 右键菜单
+16、<meter> 范围条
+17、<progress> 进度条
+18、<datalist> 为input标记定义一个下拉列表，配合option
+
+  
+
+二、新增表单类型
+1、email 邮箱地址
+2、url URL地址
+3、date，time，month，week，datetime，datetime-local 日期类型
+4、number 数字（max min step）
+5、range 范围滑块（max min step）
+6、search 搜索输入框
+7、tel 电话号码输入框
+8、color 颜色拾取器
+
+
+
+
+三、新增表单属性
+1、placeholder 输入框默认内容
+2、required 必填内容（必须加name）
+3、pattern 正则验证（必须加name）
+4、autofocus 自动聚焦
+5、autocomplete 自动完成（autocomplete="on/off"）
+6、novalidate 不验证此表单（form属性）
+7、multiple 多个值上传
+
+
+
+四、本地存储
+1、sessionStorage 会话级别的本地存储
+2、ocalStorage 永久本地存储l
+3、本地数据库
+
+
+
+五、CSS3 关系选择器
+1、E~F  兄弟选择符；选择E元素后面的所有兄弟元素F。
+
+六、CSS3 结构伪类选择器
+1、E:last-child 匹配父元素的最后一个子元素E
+2、E:only-child 匹配父元素仅有的一个子元素E
+3、E:nth-child(n) 匹配父元素的第n个子元素E（odd单数，even双数）
+4、E:nth-last-child(n) 匹配父元素的倒数第n个子元素E（odd单数，even双数）
+5、E:first-of-type 匹配同类型中的第一个同级兄弟元素E
+6、E:last-of-type 匹配同类型中的最后一个同级兄弟元素E
+7、E:only-of-type 匹配同类型中的唯一的一个同级兄弟元素E
+8、E:nth-of-type(n) 匹配同类型中的第n个同级兄弟元素E（odd单数，even双数）
+9、E:nth-last-of-type(n) 匹配同类型中的倒数第n个同级兄弟元素E（odd单数，even双数）
+10、E:empty 匹配没有任何子元素（包括text节点）的元素E
+
+七、CSS3 UI元素状态伪类选择器
+1、E:checked 匹配选中状态的元素E
+2、E:enabled 匹配可用状态的元素E
+3、E:disabled 匹配不可用状态的元素E
+
+八、CSS3 属性选择器
+1、E[att^="val"] 选择具有att属性且属性值为以val开头的字符串的E元素
+2、E[att$="val"] 选择具有att属性且属性值为以val结尾的字符串的E元素
+3、E[att*="val"] 选择具有att属性且属性值为包含val的字符串的E元素
+
+
+
+
+九、CSS3 新增属性
+1、text-shadow 文字阴影
+2、border-image 边框图片
+3、border-radius 圆角边框
+
+
+
+border:none 和 border: 0 的区别
+    border:0  ==  border-width:0px;
+    border:none == border-style: none;
+        border-none 好像在ie6,ie7下无效;还是有边框 ;(ie7经过测试有效)
+        需要给元素加background属性
+
+display:none;与 visibility:hidden 的区别
+    display:none 不为被隐藏的对象保留其物理空间,  不再占据文本流; 子孙全部不可见
+    visibility：hidden 为被隐藏的对象保留其物理空间;如果子孙元素应用了visibility:visible 则子孙元素可见
+
+    display属性设定为“none”的元素将不产生任何的框（Box），也就是说，元素对布局没有影响，浏览器将不显示该元素，包括其后代元素,更不会占位。
+    而如果设定“visibility : hidden”则会生成元素框，只是元素“不可视”，而其他非视觉的属性都将生效，例如widht、padding等。
+
+
+inline-block去除间距的几种方法
+0 inline-block是正常的，不是bug，是符合书写规范的；一般为4px的间距，字体的不同，间距也会不同
+1 去掉HTML中的空格--尾首相连，例：
+  <a href="##">
+    惆怅</a><a href="##">
+    淡定</a><a href="##">
+    热血</a>
+2 去掉HTML中的空格--尖括号换行，例：
+    <a href="##">惆怅</a
+    ><a href="##">淡定</a
+    ><a href="##">热血</a>
+3 去掉HTML中的空格--借助HTML注释，例：
+    <a href="##">惆怅</a><!--
+    --><a href="##">淡定</a><!--
+    --><a href="##">热血</a>
+4 使用margin负值
+    margin-right: -4px;
+5 HTML5中不给闭合标签	
+    <a href="##">惆怅
+    <a href="##">淡定</a>
+	<!-- 但是最后一个需要给闭合标签为了向下兼容IE6/IE7-->
+6 父容器font-size：0；
+    .space {
+    font-size: 0;
+    -webkit-text-size-adjust:none; /*Chrome,据说目前Chrome浏览器已经取消了最小字体限制*/
+    }
+7 使用letter-spacing(字符间距)
+   父容器值为-4px，子容器值为0
+8 使用word-spacing(单词间距)
+   display: inline-table;/*Chrome*/
+    word-spacing: -6px;	 
+
+ 
+响应式布局的多种写法
+	1 css3媒体查询 @media['miːdɪə]	js	  jQuery
+    2 选择性加载css及js文件：@import url(“tinyScreen.css”) screen and (max-device-width: 400px);
+    <!–[if lt IE 9]>
+        <script src=”../../css3-mediaqueries.js”></script>
+    <![endif]–>
+
+自适应多多种写法：（一次设计，普遍适用）
+    1 宽度百分比；
+    2 viewport元标签，
+    3 流动布局（含义是，各个区块的位置都是浮动的，不是固定不变的。.main {float: right;width: 70%;}.leftBar {float: left;width: 25%;}float的好处是，如果宽度太小，放不下两个元素，后面的元素会自动滚动到前面元素的下方，不会在水平方向overflow（溢出），避免了水平滚动条的出现。另外，绝对定位（position: absolute）的使用，也要非常小心。）
+    4 字体使用em
+    5 图片及其他网页：　img, object { max-width: 100%;}
+    6 选择性加载css：@import url(“tinyScreen.css”) screen and (max-device-width: 400px);
+
+字体
+px：绝对单位，页面按精确像素展示
+em：相对单位，基准点为父节点字体的大小，如果自身定义了font-size按自身来计算（浏览器默认字体是16px）；em不是一个固定的值。可以设置body｛font-size：62.5%｝
+rem：相对单位，可理解为”root em”, 相对根节点html的字体大小来计算，CSS3新加属性，chrome/firefox/IE9+支持。
+vw：viewpoint width，视窗宽度，1vw等于视窗宽度的1%。
+vh：viewpoint height，视窗高度，1vh等于视窗高度的1%。
+（vmin：vw和vh中较小的那个。
+  vmax：vw和vh中较大的那个。）
+【注意】vw, vh, vmin, vmax：IE9+局部支持，chrome/firefox/safari/opera支持，ios safari 8+支持，android browser4.4+支持，chrome for android39支持
+in:寸
+%:百分比
+cm:厘米
+mm:毫米
+ex：取当前作用效果的字体的x的高度，在无法确定x高度的情况下以0.5em计算(IE11及以下均不支持，firefox/chrome/safari/opera/ios safari/android browser4.4+等均需类内属性前缀)
+ch:以节点所使用字体中的“0”字符为基准，找不到时为0.5em(ie10+,chrome31+,safair7.1+,opera26+,ios safari 7.1+,android browser4.4+支持)
+
+viewport
+为了让手机也能获得良好的网页浏览体验；使网页就能以缩放的形式正常的显示在手机屏幕上；
+写法：
+<meta  name="viewport">
+创建一个虚拟的窗口(viewport):
+布局窗口(layout viewport)
+视觉窗口(visual viewport)
+例：<head>…<meta name=”viewport” content=”width=device-width, initial-scale=1.0, user-scalable=no”/>…</head>这个是最常见的一条viewport meta代码，将viewport定义为：宽度为设备宽度，初始缩放比例为1倍，禁止用户缩放。
+width: viewport宽度
+height: viewport高度
+initial-scale: 初始缩放比例
+maximum-scale: 最大缩放比例
+minimum-scale: 最小缩放比例
+\\
+ alert(this);//window 对象
+
+        $(function(){
+            alert(this)
+        });//window 对象
+
+    window.onload = function(){
+            alert(this)
+        };//HTML document对象
+
+        $(function(){
+            alert($(this))
+        });//弹出 "object Object"
+\\
+
+cHTML+CSS
+1.对WEB标准以及W3C的理解与认识(5):
+标签闭合、标签小写、不乱嵌套、使用外 链css和js脚本、结构行为表现的分离;
+
+1.优秀的代码
+    提高搜索机器人搜索几率、文件下载与页面速度更快、内容能被更多的用户所访问、
+    内容能被更广泛的设备所访问、更少的代码和组件，容易维 护、改版方便，不需要变动页面内容、
+    提高网站易用性；
+
+Web前端应该从哪些方面来优化网站?
+http://www.zhihu.com/question/21658448
+    一、页面级优化
+        1. 减少 HTTP请求数
+            (1). 从设计实现层面简化页面
+            (2). 合理设置 HTTP缓存：能缓存越多越好，能缓存越久越好
+            (3). 资源合并与压缩
+            (4). CSS Sprites
+        2. 使用外链脚本
+        3. 异步执行 inline脚本(其实原理和上面是一样，保证脚本在页面内容后面加载。) 
+        4. Lazy Load Javascript 
+        5. 减少不必要的 HTTP跳转
+        6. 避免重复的资源请求
+    二、代码级优化
+        1. Javascript
+            (1). DOM
+                a 较多的字符串拼接时使用数组的.join方法转换为字符串；
+                b CSS选择符优化以及HTML结构优化
+            (2). 慎用 with
+            (3). 避免使用 eval和 Function        
+            (4). 减少作用域链查找（这方面设计到一些内容的相关问题）
+                a 减少闭包的使用。
+                b 局部缓存全局
+        2. CSS选择符（浏览器对 CSS选择符的解析式从左往右进行的）
+        3. Image压缩，图片精灵，图片压缩
+        4. 资源合并与压缩
+        5. 合适的技术：懒加载等
+
+什么是SEO：
+    搜索引擎优化， 改进网站在搜索引擎中的关键词自然排名， 获得更多流量， 提高网站知名度，从而达成网站销售及品牌建设的目标。
+    
+今天的面试你感觉怎么样
+    我个人感觉还蛮好的，你们问的技术点，我基本都会。当然也有总监提到的XXX问题我不会，但是我等会回去的时候，可以去网上学习下。我个人是很想进入公司跟总监学习的，就是不知道有没有这个机会呢。
+
+SEO的分类:
+    白帽SEO：改良和规范网站设计，使之对搜索引擎和用户更加友好，是一种搜索引擎推荐的做法。
+    黑帽SEO：利用或者放大搜索引擎的缺陷，使用不正当竞争获取更多的访问量。（例如最近花千骨电视剧热播，马上有一些网站使用这个标题标题，但是内容却是推销广告的，给广大网名造成很大困扰）。
+
+SEO主要方面：
+    网站标题、关键字、描述
+    网站内容优化
+    合理设置Robot.txt文件
+    生成对搜索引擎友好的网站地图
+    增加外链引用
+    其中最重要的是以下2个方面：
+    网站结构布局优化
+    网页代码优化
+
+
+seo优化具体：
+1.如何做好SEO优化
+    1、简化代码结构，更利于搜索引擎分析抓取有用内容：
+        <head>标签放网页的标题，各个页面不同。
+        <meta keywords>列举出几个重要的关键词。
+        <meta description>网页内容的高度概括。
+        <br />标记应该放在文本中间，即使用<p><br /></p>替代突兀的<br />标记。
+        html语义化。例如我们要做一个导航，可以使用ul和li代替div+span标记；
+        <a>标记要加上说明（title属性），对于指向外部网站的链接要使用rel="nofollow"属性告诉爬虫不要去爬其他的页面。
+        <h1>正文标题要使用<h1>标记，副标题要使用<h2>。可以使用CSS样式进行显式风格的设置。切记：不重要的地方不要随便使用<h1>标记。一个页面只能出现一个
+        <table>标记的优化。使用<caption>标记为表格指定标题。
+    2、重要内容优先加载。
+    3、图片一定要添加alt属性，title属性可选。
+    4、每个页面只能出现一次H1标签，H2标签可以多次：H1权重很高，普遍认为仅次于title，一般资讯详情页的标题、商品详情页的标题，都放在H1里。
+    5、图片大小声明：如果图片大小不做定义的话，页面需要重新渲染，就会影响到速度。
+    5、页面内容尽量不要做成flash、图片、视频。尽量少使用table+iframe框架。
+    6、除首页外别的页面最好要加上结构清晰的导航。
+    7、网站结构呈扁平状树型，目录结构不宜过深，每个页面离首页最多点击不超过3次，过深不利于搜索引擎的抓取。
+    8、对于暂时不需要显示的元素应该使用z-index属性而不是display:none;这样的代码，因为Spider会过滤display属性为none的内容。
+    9、重要内容不要使用js输出。（蜘蛛不会读取JS里的内容，所以重要内容必须放在HTML里。）
+    10.尽少使用iframe框架。*（搜索引擎不会抓取到iframe里的内容，重要内容不要放在框架中。）
+
+为何不使用table表格布局:
+    1 代码量比较大,页面浏览速度慢
+    2 结构层次复杂,不利于维护和操作
+    3 不利于搜索引擎搜索查找数据
+
+2.xhtml和html有什么区别
+XHTML是HTML像XML的一个过渡语言，它比HTML严谨性会高点，然后基本语言都还是沿用的HTML的标签，只不过废除了部分表现层的标签，同事在标准上要求高了点比如标签的严格嵌套，标签结束等等！
+HTML是一种基本的WEB网页设计语言，XHTML是一个基于XML的置标语言
+最主要的不同：
+XHTML 元素必须被正确地嵌套。
+XHTML 元素必须被关闭(空标签也必须)。
+标签名必须用小写字母。
+XHTML 文档必须拥有根元素。
+
+3.Doctype? 严格模式与混杂模式-如何触发这两种模式，区分它们有何意义? 
+用于声明文档使用那种规范（html/Xhtml）一般为 严格 过度 基于框架的html文档
+加入XMl声明可触发，解析方式更改为IE5.5 拥有IE5.5的bug
+
+4.行内元素有哪些?块级元素有哪些?CSS的盒模型?
+块级元素：div p h1 h2 h3 h4 form ul
+行内元素: a b br i span input select img cite textarea
+Css盒模型:内容，border ,margin，padding
+<cite> 标签通常表示它所包含的文本对某个参考文献的引用，比如书籍或者杂志的标题。
+
+5.CSS引入的方式有哪些? link和@import的区别是?
+答：
+    内联 内嵌 外链 3种
+区别 ：
+1 link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。
+2 link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本的浏览器不支持。
+3 link支持使用Javascript控制DOM去改变样式；而@import不支持。
+@import :
+<style type="text/css" media="screen">   
+    @import url("style.css");||@import url(style.css)  (最优)
+</style>  
+4 @import可以写在css样式中，link不能
+
+6.CSS选择符有哪些?哪些属性可以继承?优先级算法如何计算?内联和important哪个优先级高?
+    标签选择符 类选择符 id选择符  ；
+    所有元素可继承：visibility和cursor。
+    内联元素可继承：font,color,line-height
+    列表元素：list-style; 
+    过CSS的权重来进行计算。简单来说就是选择器越精确优先级越高，优先级就近原则，样式定义最近者为准；
+    !important >js> 行内> id > class > tag ;
+
+6.CSS层叠是什么？
+    层叠是指冲突的样式；多个样式来源产生层叠；
+    层叠指的是样式的权重，当产生冲突时以权重高的为准。 
+
+6.CSS选择器有哪些？
+    1.CSS选择器有：
+        I.   元素选择器（例如body、div）
+        II.  ID选择器（例如#id）
+        III. 类选择器（例如.class）
+        IV.  属性选择器（例如#id[title="hello"]）
+        V.   后代选择器（又称为包含选择器，例如h1 strong）
+        VI.  子元素选择器（只能选择作为某元素子元素的元素，例如h1 > strong）
+        VII. 相邻兄弟选择器（例如h1 + strong读作：“选择紧接在 h1 元素后出现的所有段落，h1 和 p 元素拥有共同的父元素”。）
+            1 紧接
+            2 只是指紧接h1的所有p元素，但不包括h1
+            3 必须拥有相同的父元素
+        VIII.伪类选择器（例如:link，:visited，:hover，:first-child，:focus）
+        IX.  伪元素选择器（例如:first-letter，:first-line，::before，::after）（ie下before和after伪元素双冒号，css3中的伪类是单冒号）
+
+7.前端页面有哪三层构成，分别是什么?作用是什么?
+结构层 Html 表示层 CSS 行为层 js
+
+8.css的基本语句构成是?
+选择器{属性1:值1;属性2:值2;……}
+
+9.你做的页面在哪些流览器测试过?这些浏览器的内核(渲染引擎)分别是什么?
+1 Ie(Ie内核Trident)
+2 火狐（Gecko） ：开放源代码的、以C++编写的网页排版引擎。
+3 谷歌（webkit）:特点在于源码结构清晰、渲染速度极快。缺点是对网页代码的兼容性不高，导致一些编写不标准的网页无法正常显示。主要代表作品有Safari和Google的浏览器Chrome。
+4 opear(Presto):特点就是渲染速度的优化达到了极致，也是目前公认网页浏览速度最快的浏览器内核，然而代价是牺牲了网页的兼容性。(不开源)
+
+10.写出几种IE6BUG的解决方法， IE低版本，IE兼容；
+（1）.IE6的块元素，在左右浮动、设定marin时造成margin双边距bug。
+    1 并不是所有的margin边距方向都会产生双边距，出现双边距的条件是当float浮动元素的浮动方向和margin边距的方向一致时才会出现。
+    2 同一行中如果有多个浮动元素，只有第一个浮动元素会出现双边距bug，其它的浮动元素则不会。
+    3 给第一个浮动元素的css属性加上display:inline;属性就可以了。
+（2）.当元素使用float浮动后，元素与相邻的元素之间会产生3px的间隙。解决方法是:  使用dislpay:inline-3px或者在同一行的元素都加上float浮动。
+（3）.超链接hover 点击后失效 使用正确的书写顺序 link visited hover active
+（4）.IE6元素的z-index会继承父级元素的设置。
+（5）.Png 透明 使用js代码 改
+（6）.Min-height 最小高度 ！Important 解决’
+（7）.select 在ie6下遮盖 使用iframe嵌套
+（8）.为什么没有办法定义1px左右的宽度容器（IE6默认的行高造成的，使用overflow:hidden,zoom:0.08 line-height:1px） 
+ (10) .IE6/IE7下出现的各种错位，可以加入zoom:1来解决。
+ (11) .像素单位尽量偶数（实在不行也可以给外部的div的值定为偶数）；
+ (12) .IE6中图片的下方会存在一定的缝隙。要解决此类问题，需要将img标签定义为display:block或为img对应的样式写入font-size:0。
+
+11.常见的HTTP协议的状态消息都有哪些？
+    200  成功
+    400  客户端请求有语法错误
+    401  请求未经授权
+    404  请求资源不存在
+    500  服务器错误
+
+11.标签上title与alt属性的区别是什么?
+Alt 当图片不显示是 用文字代表。
+Title 为该属性提供信息
+
+12.描述css reset的作用和用途。
+Reset重置浏览器的css默认属性 浏览器的品种不同，样式不同，然后重置，让他们统一
+
+为什么不用*   margin 0
+    1 因为得根据自己的实际需求，* 表示所有，有些我并不希望被重置
+    2 样式无缘无故增加了很多的渲染
+    3 CSS reset平白无故的增加了CSS文件的大小
+
+13.解释css sprites，如何使用。
+Css 精灵 把一堆小的图片整合到一张大的图片上，减轻服务器对图片的请求数量
+
+14.浏览器标准模式和怪异模式之间的区别是什么?(浏览器解析CSS的两种模式)
+标准模式是指，浏览器按W3C标准解析执行代码；怪异模式则是使用浏览器自己的方式解析执行代码;
+与网页中的DTD声明直接相关，DTD声明定义了标准文档的类型（标准模式解析）文档类型，会使浏览器使用相应的方式加载网页并显示，忽略DTD声明,将使网页进入怪异模式(quirks mode)。
+使用 window.top.document.compatMode 可显示为什么模式
+
+15.你如何对网站的文件和资源进行优化?期待的解决方案包括：
+    1、减少HTTP请求
+    2、文件合并（压缩文件），使用缓存
+    3、减少对DOM的操作
+    4、使用JSON格式来进行数据交换
+    5、将CSS和JS放到外部文件中引用，CSS放头，JS放尾
+    6、压缩图片和使用图片Sprite技术
+
+15. 什么是重构
+    重构就是我们在保持功能不变的情况下，改善代码的质量，提高代码的复用程度。
+
+16.什么是语义化的HTML?
+直观的认识标签 对于搜索引擎的抓取有好处
+
+17.清除浮动的几种方式，各自的优缺点
+（1）.clear:both（理论上能清除任何标签，但是增加无意义的标签）
+（2）.给父元素加overflow:hidden（IE6需要给父元素设置宽度）。
+（3）.使用after伪类和内容声明在指定的现有内容的末尾添加新的内容（IE6下需要hack）。
+    .clear{
+        zoom:1;
+    }
+    .clear:after {
+        clear:both;
+        content:'';
+        display:block;
+        height: 0;
+        visibility:hidden;
+    }  
+（4）.给浮动元素的父元素也设浮动属性（缺点是：浮动元素会太多）。
+
+18.如何居中一个浮动元素
+    #div{
+        width:500px;
+        height:200px;
+        background:blue;
+        position:absolute; //绝对定位
+        left:50%; 
+        top:50%; // 50%
+        margin-left:250px; //自身宽度的一般
+        margin-top:100px //自身高度的一半
+    }
+
+
+
+19 关于字体大小：
+    font-size:
+        medium  默认值
+        inherit 规定应该从父元素继承字体尺寸。
+
+ 
+
+
+Javascript
+18.javascript的typeof返回哪些数据类型
+Object number function boolean underfind string
+
+18.ajax如何解决跨域问题
+    URL后面加callback或者dataType用jsonp。
+
+19.例举3种强制类型转换和2种隐式类型转换?
+强制（parseInt,parseFloat,number）
+隐式（== – ）
+
+20.split() join() 的区别
+前者是切割成数组的形式，后者是将数组转换成字符串
+
+21.数组方法pop() push() unshift() shift()
+Push()尾部添加 pop()尾部删除
+Unshift()头部添加 shift()头部删除
+
+21.数组常用函数 
+    1.push() 尾部添加。
+    2.pop() 尾部删除。
+    3.unshift() 头部添加。
+    4.shift() 头部删除。
+    5.splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。（该方法会改变原始数组）
+    6.slice() 方法可从已有的数组中返回选定的元素。（该方法不不不会改变原始数组）
+    7.concat() 方法用于连接两个或多个数组。（该方法不不不会改变原始数组）
+    8.reverse() 方法用于颠倒数组中元素的顺序。（该方法会改变原始数组）
+    9.sort() 方法用于对数组的元素进行排序。（该方法会改变原始数组）
+    10.join() 方法用于把数组中的所有元素放入一个字符串。
+
+
+22.事件绑定和普通事件有什么区别
+事件绑定就是针对dom元素的事件，绑定在dom元素上普通事件即为非针对dom元素的事件
+
+13 从输入网址到网页显示过程是什么？
+	1、浏览器中输入网址。
+	2、发送至DNS服务器并获得域名对应的WEB服务器的ip地址。 
+	3、与WEB服务器建立TCP连接。
+	4、浏览器向WEB服务器的ip地址发送相应的http请求。
+	5、WEB服务器响应请求并返回指定URL的数据，或错误信息，如果设定重定向，则重定向到新的URL地址。
+	6、浏览器下载数据后解析HTML源文件，解析的过程中实现对页面的排版，解析完成后在浏览器中显示基础页面。
+	7、分析页面中的超链接并显示在当前页面，重复以上过程直至无超链接需要发送，完成全部显示。 
+
+6.IE和DOM事件流的区别
+（1）.执行顺序不一样、
+（2）.参数不一样
+（3）.事件加不加on
+（4）.this指向问题
+
+23.IE和标准下有哪些兼容性的写法
+Var ev = ev || window.event
+document.documentElement.clientWidth || document.body.clientWidth
+Var target = ev.srcElement||ev.target
+
+24.ajax请求的时候get和post方式的区别
+1 对于get方式，服务器端用Request.QueryString获取变量的值，对于post方式，服务器端用Request.Form获取提交的数据。两种方式的参数都可以用Request来获得。
+2 get提交最大数据限于URL的长度，IE6/7大概是2K，其他浏览器大概是7K。post传送的数据量较大，一般被默认为不受限制。但理论上，因服务器的不同而异;
+3 get安全性非常低，post安全性较高。
+4 Get数据是放在URL后面，是不安全的，而Post数据放在form数据体中，是安全的。
+(get是把参数数据队列加到提交表单的ACTION属性所指的URL中，值和表单内各个字段一一对应，在URL中可以看到。post是通过HTTP post机制，将表单内各个字段与其内容放置在HTML HEADER内一起传送到ACTION属性所指的URL地址。用户看不到这个过程。
+)
+5 Get限制Form表单的数据集的值必须为ASCII字符集，而Post支持整个ISO10646字符集。
+
+24. cookie的属性有哪些
+    1、Expires – 过期时间。
+    2、Path – 路径。
+    3、Domain – 域。
+    4、Secure – 安全。
+
+25.call和apply的区别
+Object.call(this,obj1,obj2,obj3)
+Object.apply(this,arguments)
+
+26.ajax请求时，如何解释json数据   //重要
+使用eval parse 鉴于安全性考虑 使用parse更靠谱
+
+27.b继承a的方法
+
+28.写一个获取非行间样式的函数
+function getStyle(obj,attr,value)
+{
+if(!value)
+{
+if(obj.currentStyle)
+{
+return obj.currentStyle(attr)
+}
+else
+{
+obj.getComputedStyle(attr,false)
+}
+}
+else
+{
+obj.style[attr]=value
+}
+}
+29.事件委托是什么//重要
+让利用事件冒泡的原理，让自己的所触发的事件，让他的父元素代替执行！
+http://www.webasily.com/?p=78 例子可见此链接
+
+28.闭包是什么，有什么特性，对页面有什么影响
+闭包就是能够读取其他函数内部变量的函数。
+http://blog.csdn.net/gaoshanwudi/article/details/7355794 此链接可查看（问这个问题的不是一个公司）
+
+
+31.添加 删除 替换 插入到某个节点的方法
+obj.appendChild()添加
+obj.insertBefore()在已有的子节点之前插入一个新的子节点。
+obj.replaceChild()替换子节点
+obj.removeChild()删除子节点
+
+31.DOM操作 - 怎样添加、移除、移动、复制、创建和查找节点
+    1、创建新节点： createElement(), createTextNode()——XML的方法
+    2、添加、移除、替换、插入：appendChild(), removeChild(), replaceChild(), insertBefore()
+    3、查找：getElementsByTagName(), getElementsByName(), getElementById()
+
+
+32.解释jsonp的原理，以及为什么不是真正的ajax   //重要
+动态创建script标签，回调函数
+Ajax是页面无刷新请求数据操作
+
+33..javascript的本地对象，内置对象和宿主对象
+本地对象为array obj regexp等可以new实例化
+    //本地对象是ECMA官方定义好的对象, ECMA-262把本地对象（native object）定义为“独立于宿主环境的ECMAScript实现提供的对象”。
+内置对象为gload Math 等不可以实例化的 
+    // 不依赖宿主环境的对象,在程序执行之前就存在,这意味着开发者不必明确实例化内置对象，它已经被实例化了。ECMA只定义了两个内置对象，即Global和Math（它们也是本地对象，根据定义，所有内置对象都是本地对象）。
+宿主为浏览器自带的document,window 等
+    //  所有非本地对象都是宿主对象（host Object）,所有的BOM和DOM对象都是宿主对象。  
+
+
+34.document load 和document ready的区别
+Document.onload 是在结构和样式全部加载完才执行js
+Document.ready原生种没有这个方法，jquery中有 $().ready(function)
+指全在完element之后即加载js
+
+35.”==”和“===”的不同
+前者会自动转换类型
+后者不会
+
+
+37.编写一个数组去重的方法
+function oSort(arr)
+{
+var result ={};
+var newArr=[];
+for(var i=0;i<arr.length;i++)
+{
+if(!result[arr])
+{
+newArr.push(arr)
+result[arr]=1
+}
+}
+return newArr
+}
+
+37.网络爬虫
+网络爬虫是捜索引擎抓取系统的重要组成部分。爬虫的主要目的是将互联网上的网页下载到本地形成一个或联网内容的镜像备份    //可以了解一下 
+
+38 介绍所知道的CSS hack技巧
+	1 CSS hack书写顺序一般为FF IE7 IE6
+	2 条件注释法
+		比如针对所有IE：<!–[if IE]><!–您的代码–><![endif]–>
+		针对IE6及以下版本：<!–[if lt IE 7]><!–您的代码–><![endif]–>
+		这类Hack不仅对CSS生效，对写在判断语句里面的所有代码都 会生效。
+	3 类属性前缀法
+		“-″减号是IE6专有的hack
+		“\9″ IE6/IE7/IE8/IE9/IE10都生效
+		“\0″ IE8/IE9/IE10都生效，是IE8/9/10的hack
+		“\9\0″ 只对IE9/IE10生效，是IE9/10的hack
+	4 选择器前缀法
+		比如IE6能识别*html .class{}
+		IE7能识别*+html .class{}或者*:first-child + html .class{}
+
+
+
+ 39 什么是haslayout属性，会带来什么样的后果？
+	hasLayout 属性是微软特有的过时属性，在IE8、IE9中，hasLayout属性已经被废弃。
+
+
+ 40 将如下字符串转变成json对象
+var str=”{a:1,b:2,c:true,d:’hello’}”;
+答：
+ var str="{a:1,b:2,c:true,d:'hello'}";
+		var obj = eval('(' + str + ')'); 
+		alert(obj.a);
+/*
+function strToJson(str){
+	var json = eval('(' + str + ')');
+	return json;
+} */
+
+41 在如下数组第二个元素后插入一个元素3
+var ar=[1,2,4,5,6];
+答：	var	arr = [1,2,4,5,6];
+		arr.splice(1,0,3);
+		alert(arr);
+
+42 请根据每个元素的i属性，由小到大，排序如下数组
+var ar=[{i:5,v:1},{i:2,v:4},{i:3,v:2},{i:1,v:5},{i:4,v:3}];
+答：ar.sort(function(a, b){return a.i - b.i});
+	console.log(ar); 
+	[{"i":1,"v":5},{"i":2,"v":4},{"i":3,"v":2},{"i":4,"v":3},{"i":5,"v":1}]
+
+43 以空格字符串作为分隔字符串，将如下字符串拆分成数组（每个元素不能含有空格字符）
+var str=’a b c 20 d e f g 123′;
+ 答：var str = 'a b c 	 20 d    e f g 123'
+	var arrb =[]; 
+	function trim(str){
+	    return str.replace(/\s+/g, ",");
+	}
+	arrb.push(trim(str).split(","));
+	alert(arrb);
+
+	var str = 'ab   c    20   d   e f  g123';
+	var arr2 = [];
+
+	arr2 = str.match(/\S+/g);
+	alert(arr2);
+ 
+44  请将如下数据库表的记录用json表示出来
+id name city
+————————–
+1 Tom London
+2 John Newyork
+3 Alice Paris
+答：[
+			{
+				"id":1,
+				"name":"Tom",
+				"city":"London"
+			},
+			{
+				"id":2,
+				"name":"John",
+				"city":"Newyork"
+			},
+			{
+				"id":3,
+				"name":"Alice",
+				"city":"Paris"
+			}
+		]
+ 
+
+45 编写代码让f1继承f2的所有成员
+ 
+function f2(){
+this.a2=3;
+this.b2=4;
+}
+ 
+function f1(){
+this.a1=1;
+this.b1=2;
+}
+答：
+
+46 把16进制颜色转变成rgb颜色，如:#FFFFFF等同rgb(255,255,255)
+答： //十六进制颜色值域RGB格式颜色值之间的相互转换  
+      
+    //-------------------------------------  
+    //十六进制颜色值的正则表达式  
+    var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;  
+    /*RGB颜色转换为16进制*/  
+    String.prototype.colorHex = function(){  
+        var that = this;  
+        if(/^(rgb|RGB)/.test(that)){  
+            var aColor = that.replace(/(?:||rgb|RGB)*/g,"").split(",");  
+            var strHex = "#";  
+            for(var i=0; i<aColor.length; i++){  
+                var hex = Number(aColor[i]).toString(16);  
+                if(hex === "0"){  
+                    hex += hex;   
+                }  
+                strHex += hex;  
+            }  
+            if(strHex.length !== 7){  
+                strHex = that;    
+            }  
+            return strHex;  
+        }else if(reg.test(that)){  
+            var aNum = that.replace(/#/,"").split("");  
+            if(aNum.length === 6){  
+                return that;      
+            }else if(aNum.length === 3){  
+                var numHex = "#";  
+                for(var i=0; i<aNum.length; i+=1){  
+                    numHex += (aNum[i]+aNum[i]);  
+                }  
+                return numHex;  
+            }  
+        }else{  
+            return that;      
+        }  
+    };  
+      
+    //-------------------------------------------------  
+      
+    /*16进制颜色转为RGB格式*/  
+    String.prototype.colorRgb = function(){  
+        var sColor = this.toLowerCase();  
+        if(sColor && reg.test(sColor)){  
+            if(sColor.length === 4){  
+                var sColorNew = "#";  
+                for(var i=1; i<4; i+=1){  
+                    sColorNew += sColor.slice(i,i+1).concat(sColor.slice(i,i+1));     
+                }  
+                sColor = sColorNew;  
+            }  
+            //处理六位的颜色值  
+            var sColorChange = [];  
+            for(var i=1; i<7; i+=2){  
+                sColorChange.push(parseInt("0x"+sColor.slice(i,i+2)));    
+            }  
+            return "RGB(" + sColorChange.join(",") + ")";  
+        }else{  
+            return sColor;    
+        }  
+    };  
+ 
+ 2.调用方法
+var sRgb = "RGB(255, 255, 255)" , sHex = "#00538b";  
+var sHexColor = sRgb.colorHex();//转换为十六进制方法<code></code>  
+var sRgbColor = sHex.colorRgb();//转为RGB颜色值的方法  
+ 
+47 javascript里typeof返回的结果有哪几种？
+答：六种，"undefined","string","boolean","number","object","function"
+例：
+typeof(1): number
+typeof(NaN): number
+typeof(Number.MIN_VALUE): number
+typeof(Infinity): number
+typeof("123"): string
+typeof(true): boolean
+typeof(window): object
+typeof(document): object
+typeof(null): object
+typeof(eval): function
+typeof(Date): function
+typeof(sss): undefined
+typeof(undefined): undefined
+
+48 如何把一个字符串里的所有单词的第一个字符变大写？
+
+
+49 如何获取下拉框选中项的内容？
+
+
+50 setInterval(function(){
+            setTimeout(function(){
+                alert("say!")
+            }, 5000)
+        }, 1000);
+代码运行后，提示多久一次？
+
+51 怎么判断一个对象是数组类型的？
+答：var arr = [1,2,3];
+alert(arr instanceof Array);//结果为true
+
+52 javascript有哪些方法能够实现继承？
+答：1.拷贝继承：通用型的，有new或无new的都可以
+    2.类式继承：适合new构造函数形式
+    3.原型继承：无new的对象，例如json
+
+53  假如一个父容器里有1万个子元素，要给他们全部都各自绑定上事件，如何绑性能最好？
+答：
+ 
+54 	【】疑问： 什么情况下NaN   返回的是NaN？    直接弹NaN就可以了啊
+
+
+56 关键词是用于表示控制语句的开始或结束或执行特定操作的.保留字尽管在JavaScript中还没任何特定用途,但它们将来可能会被用作关键字,因此都不能使用.   关键字与保留字如下
+break     do     instanceof     typeof    case     else     new     var    catch     finally     return     void    continue     for     switch     while    debugger*     function     this     with    default     if     throw     delete    in     try   
+
+abstract     enum     int     short    boolean     export     interface     static    byte     extends     long     super    char     final     native     synchronized    class     float     package     throws    const     goto     private     transient    debugger     implements     protected     volatile    double     import     public    
+
+ 
+
+
+
+JavaScript中__proto__与prototype的关系（区别）
+ 
+
+
+理论：
+
+42.css样式表置顶：经样式表（css）放在页面的HEAD中会让网页显得加载速度更快，因为这样可以是浏览器逐步加载已将下载的网页内容。这对内容比较多的网页尤其重要，用户不用一直等待在一个柏坪上，而是可以先看到已将下载的内容。
+    如果将样式表放在底部，浏览器会拒绝渲染已经下载的网页，因为大多数浏览器在实现时都努力避免重绘，样式表中的内容如果您是绘制网页的关键信息，没有下载下来之前只好对不起观众了。
+
+43.CMD VS AMD
+    CommonJS是服务器端模块的规范，Node.js采用了这个规范。
+    根据CommonJS规范，一个单独的文件就是一个模块。每一个模块都是一个单独的作用域，也就是说，在该模块内部定义的变量，无法被其他模块读取，除非定义为global对象的属性
+    CommonJS规范加载模块实施同步的，也就是说，只有加载完成，才能执行后面的擦做。AMD规范则是飞同步加载模块，允许指定回调函数。由于Node.js主要用于服务器变成，模块文件一般都是已经存在于本地硬盘，所以加载起来比较快，不用考虑非同步加载的方式，所以CommonJS规范比较实用。但是，如果是浏览器环境，要从服务器端加载模块，这时就必须采用非同步模式，因此浏览器端一般采用AMD规范
+
+44.前端安全
+CSRF:
+简介：跨站请求伪造。攻击者盗用了你的身份，以你的名义发送恶意请求。他可以做到的事情包括：以你的名义发送邮件、发消息、盗取你的账号、甚至购买商品……造成的问题包括：个人隐私泄露以及财产安全。
+原理：登陆受新人的网站A，并且在本地生成cookie，在不登录A网站的情况下，访问危险网站B
+常见类型：
+1.使用get跟新请求资源，容易在B使用img标签造成攻击
+2.前端虽然成了post请求，但是B网站通过iframe等手段同样造成了攻击
+防御机制
+1.验证码：用户每次调教都需要在表单中填写图片上一个随机的字符串
+2.天假一个隐藏的输入框，包含token，服务端验证是否匹配
+3.使用HTTPrefer头部进行判断，如果不是业务郁闷发起的HTTP请求，直接过滤。
+
+45.XSS:XSS是什么？
+它的全名是：Cross-site scripting，为了和CSS层叠样式表区分所以取名XSS。是一种网站应用程序的安全漏洞攻击，是代码注入的一种。它允许而已用户将代码注入到网页中，其他用户在观看网页时就会收到影响。这类攻击通常包含了HTML以及用户端脚本语言
+
+46.微信内浏览器缓存网页有什么办法解决
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+
+浅拷贝 只拷贝指针，深拷贝就是拷贝他的值，重新生成的对像;
+在有指针的情况下，浅拷贝只是增加了一个指针指向已经存在的内存，而深拷贝就是增加一个指针并且申请一个新的内存，使这个增加的指针指向这个新的内存，采用深拷贝的情况下，释放内存的时候就不会出现在浅拷贝时重复释放同一内存的错误！
+
+
+
+
+4 HTML，css实现过渡颜色，背景，色调
+CSS3 新增颜色表示方式
+CSS3 新增颜色表示方式
+RGBA模式
+HSL模式
+HSLA模式
+1.RGBA模式
+RGBA记法。
+此色彩模式与RGB相同，只是在RGB模式上新增了Alpha透明度。
+语法：RGBA(R,G,B,A)
+取值：
+R： 红色值。正整数 | 百分数 
+G： 绿色值。正整数 | 百分数 
+B： 蓝色值。正整数 | 百分数 
+A： Alpha透明度。取值0~1之间。 
+  例如:rgba(255,0,0,0.5)半透明红色
+2.HSL模式
+语法:HSL(H,S,L)
+取值：
+H： Hue(色调)。
+0(或360)表示红色，120表示绿色，240表示蓝色，也可取其他数值来指定颜色。取值为：0 - 360 
+S： Saturation(饱和度)。取值为：0.0% - 100.0% 
+L： Lightness(亮度)。取值为：0.0% - 100.0%
+  例如:hsl(0,100%,50%) 红色
+
+3.HSLA模式
+HSL记法。 (色轮模式)
+语法:HSLA(H,S,L,A)
+取值：
+H： Hue(色调)。
+0(或360)表示红色，120表示绿色，240表示蓝色，也可取其他数值来指定颜色。取值为：0 - 360 
+S： Saturation(饱和度)。取值为：0.0% - 100.0% 
+L： Lightness(亮度)。取值为：0.0% - 100.0%
+A： Alpha透明度。取值0~1之间。
+  例如:hsl(360,50%,50%,0.5) 红色
+4.transparent
+特殊颜色值,表示透明色。可以直接当做颜色使用。
+例如：color:transparent 
+ 设定字体颜色为透明
+实例:镂空字
+5.Opacity属性
+作用：设定元素的透明度。
+取值：0~1之间
+
+注意：对于尚不支持opacity属性的IE浏览器
+滤镜：filter:alpha(opacity=50) 仅限IE
+
+
+
+
+
+
+
+5 设计模式&设计框架
+    框架通常是代码重用，而设计模式是设计重用，架构则介于两者之间，部分代码重用，部分设计重用，有时分析也可重用。
+5 MVC：
+    MVC是一个框架模式
+    模型(model)-视图(view)-控制器(controller)
+        Model(模型)表示应用程序核心(比如数据库记录列表)。
+        View(视图)显示数据(数据库记录)。
+        Controller(控制器)处理输入(写入数据库记录)；
+
+        3 个文件夹，
+        1 代码，   后台代码，linq，sql，
+        2 数据，   数据库 ef，mobil
+        3 网页，   view   html代码
+        模型是后台数据 mobil   存放数据库文件
+        视图是前台页面   
+        控制是前台调用后台数据:controller文件夹里面存放代码，控制前后台交互
+
+
+
+        是这三个之间的调用  后台数据不是直接使用的
+        数据库里的数据一般不直接使用   要用某种语言抽象模拟出来   然后通过控制层调用与前台页面交互数据
+    MVC 模式同时提供了对 HTML、CSS 和 JavaScript 的完全控制。 
+    优点：耦合性低，重用性高，使开发和维护用户接口的技术含量降低，部署快使用MVC模式使开发时间得到相当大的缩减（它使后台集中精力于业务逻辑，前端集中精力于表现形式上），可维护性高（分离视图层和业务逻辑层也使得WEB应用更易于维护和修改）
+
+6 表单的默认属性；
+    action，method，type，maxlength，value，size，name
+
+
+
+
+
+
+
+
+HTML5本地储存，离线储存
+    本地储存（即:客户端储存,使用 JavaScript 来存储和访问数据。）
+        HTML5 提供了两种在客户端存储数据的新方法：(5MB，之前都是由cookie完成的，但是cookie不适合大数据的储存，)
+            localStorage - 没有时间限制的数据存储
+            sessionStorage - 针对一个 session 的数据存储
+        1 localStorage 方法：（localStorage 方法存储的数据没有时间限制。）
+        2 sessionStorage 方法：（当用户关闭浏览器窗口后，数据会被删除。）
+
+JS纯前端的国际化解决方法：http://www.it610.com/article/4328920.htm
+    实现方式
+    1. 将各国语言翻译好之后放在一个js文件里以JSON格式保存，或者每个语言一个js文件也可以，比如zh-CN.js，en-US.js等。
+    2. 将所有需要翻译的文字用span标签包起来，并且设置一个自定义属性”localeString”,并将内容的英文值赋值给该属性，来标志该span标签里面的内容需要翻译，比如hello world.。
+    3. JavaScript载入后首先判断浏览器的语言，然后遍历页面找到所有带有”localeString”属性的span标签，然后使用用户的语言的对应的值将该值替换掉。比如上面的hello，在语言js中找到hello对应的值“你好时间。”来替换掉”hello world.”
+    这里要注意的是”localeString”是自定义属性，你可以用任何名字都可以，它的值就是每个内容在js文件里的key了，比如：{“hello”: “你好世界。”}
+
+
+
+gulp：
+    gulp是基于Nodejs的自动任务运行器她能自动化地完成 javascript、coffee、sass、less、html/image、css 等文件的测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤。...
+
+
+
+
+
+
+
+XHTML
+    是更严格的HTML，是HTML的子集
+
+    1 语法
+        属性名称必须为小写
+        属性值使用双引号
+        属性简写是不允许的
+        用id属性来替代name属性，注意：为了版本比较低的浏览器，你应该同时使用name和id属性，并使它们两个的值相同的
+
+        所有的标记都必须要有一个相应的结束标记
+        所有标签的元素和属性的名字都必须使用小写
+        所有的XML标记都必须合理嵌套
+        所有的属性必须用引号""括起来
+        把所有<和&特殊符号用编码表示
+        给所有属性赋一个值
+        不要在注释内容中使“--”
+        .图片必须有说明文字
+
+    目的，是使一个XHTML网页能够被网页浏览器正确及较快地编译。
+
+
+    2 将html转换为xhtml
+        添加一个 XHTML <!DOCTYPE> 到网页中。
+        修改所有的元素为小写。
+        关闭所有的空元素。
+        修改所有的属性名称为小写。
+        所有属性值添加引号。
+        添加 xmlns 属性到每个页面的 html 元素中。
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 轮播图写法（5s定时）
+
+js中奖概率
+
+数组排序
+
+转换进制
+
+如何为js中所有的对象创建一个通用的方法
+
+倒计时
+
+简述js对象继承的方法
+
+如何用jQuery获得一个ul中的某个li的值
+
+jQuery的Ajax主要有几种形式
+
+HTML5 的新特点
+
+display：none  和 visibility：hidden 的区别：
+display：none：  看不见摸不着；不在占空间流（文本流）
+visibility：hidden ： 看不见摸得着；占据空间流（文本流）
+
+使2个div平行排列并使第二个div的宽度自适应屏幕宽度(假设第一个宽度固定的情况下)
+
+正则：  手机号，密码（数字，字母都需要） 与 邮箱 
+
+请解释一下为什么会出现浮动和什么时候需要清除浮动？清除浮动的方式
+移动端的布局用过媒体查询吗？
+使用 CSS 预处理器吗？喜欢那个？
+SASS (SASS、LESS没有本质区别，只因为团队前端都是用的SASS)
+CSS优化、提高性能的方法有哪些？
+浏览器是怎样解析CSS选择器的？
+在网页中的应该使用奇数还是偶数的字体？为什么呢？
+margin和padding分别适合什么场景使用？
+抽离样式模块怎么写，说出思路，有无实践经验？[阿里航旅的面试题]
+元素竖向的百分比设定是相对于容器的高度吗？
+全屏滚动的原理是什么？用到了CSS的那些属性？
+什么是响应式设计？响应式设计的基本原理是什么？如何兼容低版本的IE？
+视差滚动效果，如何给每页做不同的动画？（回到顶部，向下滑动要再次出现，和只出现一次分别怎么做？）
+::before 和 :after中双冒号和单冒号 有什么区别？解释一下这2个伪元素的作用。
+如何修改chrome记住密码后自动填充表单的黄色背景 ？
+你对line-height是如何理解的？
+设置元素浮动后，该元素的display值是多少？（自动变成display:block）
+怎么让Chrome支持小于12px 的文字？
+让页面里的字体变清晰，变细用CSS怎么做？（-webkit-font-smoothing: antialiased;）
+font-style属性可以让它赋值为"oblique" oblique是什么意思？
+position:fixed;在android下无效怎么处理？
+overflow: scroll时不能平滑滚动的问题怎么处理？
+有一个高度自适应的div，里面有两个div，一个高度100px，希望另一个填满剩下的高度。
+png、jpg、gif 这些图片格式解释一下，分别什么时候用。有没有了解过webp？
+style标签写在body后与body前有什么区别？
+1.<header><footer>标签的含义，在列举其他类似的标签
+2.使用datalist实现下拉框选择男女的html
+3.h5表单还有那些新的字段类型，列举你知道的
+4.本地存储的概念，有什么特点，数据的生命周期是多长
+5.css3中常用的选择器
+6.移动开发中，多手机分辨率的兼容问题 
+9.熟悉哪些移动开发的中间件(phonegap,appcan,微信 jssdk),各有什么特点
+10.nodejs的一些特点和应用场景
+
+ 
+
+21、算法题：写一个函数，返回一个多维数组指定第n维度的所有项。  
+
+----------一些面试题目
+1.XMLHttpRequest
+2.Http状态吗
+3.Cache-control
+4.CSS动画原理
+5.圣杯布局
+6.ie的某些兼容性
+
+8.跨域
+9.JavaScript数据类型
+10.页面加载
+11.字符串转化
+12.jsonp原理
+13.CSS合并方法
+14.盒子模型
+15.定位
+17.事件委托
+18.模块化工具的特点
+19.session
+20.ajax跨域
+21.this
+22.前端怎么实现模块化
+23.最熟悉的框架
+24.算法
+25.js动画算法
+26.拖拽实现
+27.js继承实现
+28.文件合并
+29.CSS精灵
+30.避免页面跳转
+31.js延迟加载
+32.减少DOM元素数量：会加大页面加载和脚本执行的效率
+33.浏览器一般对同一个与的下载连接数有所限制，按照郁闷划分下载内容可以浏览器增大并行下载链接，但是注意控制域名使用在2-4个直接，不然dns查询也是个问题
+34.使用CDN
+35.404我们都不陌生，代表服务器没有找到资源，我们要特别注意404的情况不要在我们提供的网页子元素，客户端发动一个请求但是服务器却返回一个无用的结果，事件浪费掉了，
+36.使用CDN
+37.利用缓存：cache-control和Expires
+38.Gzip压缩传输文件
+39.配置Etag 
+

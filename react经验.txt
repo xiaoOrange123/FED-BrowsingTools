@@ -1,0 +1,107 @@
+
+React 不同于mvc框架的 AngularJs；     React只有view； 需要和其他的框架结合才是完整的mvc
+
+
+React 使用 JSX 来替代常规的 JavaScript。
+JSX 是一个看起来很像 XML 的 JavaScript 语法扩展。
+我们不需要一定使用 JSX，但它有以下优点：
+	JSX 执行更快，因为它在编译为 JavaScript 代码后进行了优化。
+	它是类型安全的，在编译过程中就能发现错误。
+	使用 JSX 编写模板更加简单快速。
+
+目录：
+	1 虚拟DOM
+	2 JSX：
+	3 react 组件
+
+
+1 虚拟DOM
+	1 虚拟DOM是React的基石。
+	why：
+		1 Web应用和网站不同，一个Web应用 中通常会在单页内有大量的DOM操作，而这些DOM操作很慢。
+		2 在React中，应用程序在虚拟DOM上操作，这让React有了优化的机会。简单说， React在每次需要渲染时，会先比较当前DOM内容和待渲染内容的差异， 然后再决定如何最优地更新DOM。这个过程被称为reconciliation。
+		3 因为有了虚拟DOM这一层，所以通过配备不同的渲染器，就可以将虚拟DOM的内容 渲染到不同的平台。而应用开发者，使用JavaScript就可以通吃各个平台了。
+
+2 JSX：
+	*: 在html中使用JSX，还需要引入JSX语法转换库JSXTransform.js。 这个库加载后，将在DOM树构造完成后（通过监听 DOMContentLoaded 事件）处理 JSX脚本：
+		1. 搜索DOM树中的script节点，如果其类型为text/jsx则进行后续处理
+		2. 读取script节点的内容，将其转化为JavaScript代码
+		3. 构造一个新的script元素，设置其内容为转化结果代码，并追加到DOM树head元素中
+	a 独立的jsx文件并在body中引用：    <script type="text/jsx" src="....js"></script>     // text/babel 也可以,推荐babel
+		区别就在于 babel 支持将按照ES6写的代码转成ES5格式的代码，以便让其能在现代浏览器上正常运行;       用jsx， 只能用ES5的语法。
+	b 在 JSX 中使用 JavaScript 表达式。表达式写在花括号 {} 中：
+		<h1>{1+1}</h1>   //输出 <h1>2</h1>
+	c JSX 中不能使用 if else 语句,但是可以使用三元运算符
+	d  React 会在指定元素数字后自动添加 px ：
+		var myStyle = {
+			fontSize: 100,
+			color: '#FF0000'
+		};
+		ReactDOM.render(
+			<h1 style = {myStyle}>菜鸟教程</h1>,
+			document.getElementById('example')
+		);
+	e 注释需要写在花括号中：{/*注释...*/}
+	f JSX 允许在模板中插入数组，数组会自动展开所有成员：
+		var arr = [
+ 			<h1>菜鸟教程</h1>,
+  			<h2>学的不仅是技术，更是梦想！</h2>,
+		];
+		ReactDOM.render(
+			<div>{arr}</div>,
+			document.getElementById('example')
+		);
+
+3 react 组件：
+
+
+react创建元素并显示：
+//语法：React.createElement(type,[props],[children...]) - 在虚拟DOM上创建指定的React元素 ：必选的元素类型；可选的JSON对象；可选的这个元素的子元素(不限)
+    var demo = React.createElement(
+            "ul",
+            null,
+            React.createElement("li",null,"列表1"),
+            React.createElement("li",null,"列表2")
+    );
+
+
+/* React.render(element,container,[callback]) - 将虚拟DOM上的对象渲染到真实DOM上:
+element 使用createElement()方法创建的React元素，注意，不是HTML元素！;
+container 真实DOM中的HTML元素，作为渲染的目标容器   语法： document.querySelector("selector")
+callback 可选的函数，当渲染完成或更新后被执行
+*/
+    React.render(element,document.querySelector("#content"));
+
+
+
+
+
+
+
+
+在react 0.14前，浏览器端实现对jsx的编译依赖jsxtransformer.js 
+在react 0.14后，这个依赖的库改为browser.js
+页面script标签的type也由text/jsx改为text/babel
+但是以上只能用来测试学习react
+生产环境需要借助编译工具事先将jsx编译成js
+对应的这个工具也由react-tool更换为babel
+
+作者：王金亮
+链接：https://www.zhihu.com/question/37389040/answer/78688199
+来源：知乎
+著作权归作者所有，转载请联系作者获得授权。
+
+
+
+
+
+
+
+
+使用react与原生的区别：
+	快速创建新节点，并且文本会覆盖（见时间戳实例）
+
+
+AngularJS定义组件的方式和React截然不同。如果说HTML是一个轮子，AngularJS 的指令/Directive则是给这个轮子镶了个金边，而React，重新造了个轮子： JSX。
+
+

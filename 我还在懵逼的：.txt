@@ -1,0 +1,37 @@
+1【】 	使用function login(user,pwd){
+                        return..;
+                    }
+                    判断用户名，密码是否为admin，验证通过则提示登录成功否则登录失败
+
+2	处理异常
+
+3【】	this：  指代调用该方法的对象
+
+4【ok】	改颜色的代码
+	div.style.background = "red"  或者  div.style.backgroundColor = "red"
+	 
+
+5【思路】 	倒计时	:  未来时间
+
+ 
+
+8	随机移动
+
+9 	见8-9.html
+
+10【设置或返回被选元素的属性值;括号内不能为空，应该为属性值，否则undefined】	 attr
+
+
+
+
+11  邮箱和手机号
+
+12   表格点击增加元素，点击删除元素
+
+13  全选全不选
+
+
+
+
+貂蝉
+王昭君

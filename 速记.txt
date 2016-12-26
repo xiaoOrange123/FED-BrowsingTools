@@ -1,0 +1,185 @@
+
+
+背景图片的绘制区域:
+ 
+background-clip 属性规定背景的绘制区域:
+参考：http://www.w3school.com.cn/cssref/pr_background-clip.asp
+默认值：	border-box
+继承性：	no
+JavaScript 语法：	object.style.backgroundClip="content-box"
+CSS样式语法：		background-clip: border-box|padding-box|content-box;
+
+值		描述	 
+border-box	背景被裁剪到边框盒。	 
+padding-box	背景被裁剪到内边距框。	 
+content-box	背景被裁剪到内容框。
+
+斜切时，里面的字也会倾斜
+中心点
+
+background:red;
+border-radius:100%;
+transition:all 5s;
+transform:rotate(0deg) scale(0.1);
+
+background:blue;
+transform:rotate(360deg) scale(2);
+
+
+<figure>
+用的放图片和文字,div的容器
+<figcaption>
+用来放文字,div的容器
+
+
+______
+
+响应式
+@media screen and (min-width:951px){
+	figure{
+		width:33.33%;
+	}
+}
+@media screen and (max-width:950px) and (min-width:476) {
+	figure{
+		width:50%;
+	}
+}
+@media screen and (max-width:475px){
+	figure{
+		width:100%;
+	}
+}
+
+
+
+.figure figcaption div{
+width:70px;
+height:
+
+
+transform-origin:right bottom;/*原点*/
+
+
+----------------------------------------------------
+
+
+.figure6 .div1{
+	width:70%;
+	height:60%;
+	position:absolute;
+	top:15%;
+	left:10%;
+	border-top:2px solid white;
+	border-bottom:2px solid white;
+	transform:scale(0,1);
+	transition: 0.6s;
+}
+.figure6 .div2{
+	width:60%;
+	height:70%;
+	position:absolute;
+	top:12%;
+	left:15%;
+	border-left:2px solid white;
+	border-right:2px solid white;
+	transform:scale(1,0);
+	transition: 0.6s;
+}
+.figure6:hover figcaption .div1{
+	transform:scale(1,1);
+}
+.figure6:hover figcaption .div2{
+	transform:scale(1,1);
+}
+.figure6 img{
+	transform:translate(0px,0px) ;
+	transition: all 0.6s;
+}
+.figure6:hover img{
+	transform:translate(-50px,0px) ;
+	opacity: 0.6;
+}
+
+
+Internet Explorer 10、Firefox 以及 Opera 支持 @keyframes 规则和 animation 属性。
+Chrome 和 Safari 需要前缀 -webkit-。
+注释：Internet Explorer 9，以及更早的版本，不支持 @keyframe 规则或 animation 属性。
+
+
+@keyframes 规则，规范
+名称，
+时间，
+速度，默认ease
+延迟，
+次数，infinite无限次
+是否逆向，alternate轮流反向播放。
+
+
+
+
+怎么做半圆来着？？   高宽都设为0，边框给个大像素，给一个颜色，其他3个方向为透明;还可以做出三角形
+
+
+border-image使用图片作边框
+border-image:url(border.png) 30 30 round;
+
+值			描述	 
+border-image-source	用在边框的图片的路径。	
+border-image-slice	图片边框向内偏移。	
+border-image-width	图片边框的宽度。	
+border-image-outset	边框图像区域超出边框的量。	
+border-image-repeat	图像边框是否应平铺(repeated)、铺满(rounded)或拉伸(stretched)。
+使用四个值来创建图片按钮，并且使用的是图片边框。	
+{
+border:10px solid transparent;
+width:40px;
+padding:5px 10px;
+
+border-image: url(/i/border_image_button.png) 0 14 101 14 stretch;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
