@@ -3891,5 +3891,5 @@ getBoundingClientRect:  含有元素的bottom,height,left,right,top,width值
 		2 return的不是对象,则这个return被忽略;
 		3 new过后这个函数是一个对象;
 
-2016-12-16 刷新
+2016-12-26 刷新
 
