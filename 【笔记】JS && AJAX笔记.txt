@@ -11,10 +11,6 @@
 
 
 
-
-
-
-
 //代码执行顺序：
 	function 先执行；  全局后执行 ；再最后是定时器内的代码块
 
@@ -3406,6 +3402,61 @@ ecfo  再按tab健，意想不到的事发生
 				b 如果参数是实例,则返回实例的可枚举的属性; 如果实例没有自己的属性,那不会返回原型的属性,而是返回空数组
 
 
+	! 面向对象的程序设计:
+		对象的属性类型: (数据属性 和 访问器属性;描述属性的各种特征,在js中不能直接访问,特性被放在2对方括号中)
+			1 数据属性: 包含一个数据值得位置.在这个位置可以读写和写入值. 他有4个描述的特性
+				[[configurable]] :  表示能否通过delete删除属性,默认为true
+				[[enumerable]] :	表示能否通过for-in循环返回属性,默认为true;
+				[[writeable]] :		表示能否修改属性的值,默认为true
+				[[value]] 	:	包含这个属性的数据值,默认为undefined;
+
+				A 详解[[enumerable]] :即便设置了false,但是所有开发人员定义的属性都是可以枚举的,不受此影响; IE8例外: hasOwnProperty(),propertyisEnumerablr(),toLocaleString(),toString()和valueOf(); 这些关键词做的属性,IE8及以下都无法枚举
+				B ECMAScript5 将construction和prototype属性的[[enumerable]]特性设置为false ; 因为这2个属性不受开发人员设定的,所以无法枚举
+```				// 并不是所以的浏览器都是照此实现
+				C Object.keys(参数)方法// 参数可以是实例,可以是原型
+				返回一个包含可枚举属性的字符串数组 ! 
+			2 访问器属性:(红宝书141页)
+
+
+		defineProperty()  修改属性默认的特性
+			方法接受3个参数: 属性所在的对象, 属性的名字, 一个描述符对象;
+			其中描述符对象的属性必须是configurable, enumerable, writeable, value ; // 除value,默认值为false
+			例: var person = {};
+			Object.defineProperty(person, "name", {
+				writable : false ,
+				value : "Nicholas"
+			})
+			alert(person.name); // "Nicholas"
+			person.name = "Greg";
+			alert(person.name); // "Nicholas"
+
+		函数技巧 : 
+			1 工厂模式
+			2 构造函数模式
+			3 原型模式 (原型技巧) :
+				a in 操作符
+				b Person.prototype = {
+					...
+				}
+				c 动态原型
+				d 寄生构造函数模式
+				e 稳妥构造函数模式
+
+			原型链	(默认的原型都是Object的实例)
+				a 借用构造函数
+				b 组合继承(常用)
+				c 原型式继承
+				d 寄生式继承
+				e 寄生组合式
+
+
+		 题外:
+		 	Object() 方法:
+		 		Object(1): 创造一个Number对象
+		 		Object("1"): 创造一个String对象, 键值对为0 : "1"
+
+
+
 
 两个内置对象（2个）：
 即 Global 和 Math （它们也是本地对象，根据定义，每个内置对象都是本地对象）。
@@ -3588,34 +3639,6 @@ JS性能 及 内存问题
 		例: array.reduce(function(prev,cur,index,array){
 			return prev + cur;
 		})
-
-	! 面向对象的程序设计:
-		对象的属性类型: (数据属性 和 访问器属性;描述属性的各种特征,在js中不能直接访问,特性被放在2对方括号中)
-			1 数据属性: 包含一个数据值得位置.在这个位置可以读写和写入值. 他有4个描述的特性
-				[[configurable]] :  表示能否通过delete删除属性,默认为true
-				[[enumerable]] :	表示能否通过for-in循环返回属性,默认为true;
-				[[writeable]] :		表示能否修改属性的值,默认为true
-				[[value]] 	:	包含这个属性的数据值,默认为undefined;
-
-				A 详解[[enumerable]] :即便设置了false,但是所有开发人员定义的属性都是可以枚举的,不受此影响; IE8例外: hasOwnProperty(),propertyisEnumerablr(),toLocaleString(),toString()和valueOf(); 这些关键词做的属性,IE8及以下都无法枚举
-				B ECMAScript5 将construction和prototype属性的[[enumerable]]特性设置为false ; 因为这2个属性不受开发人员设定的,所以无法枚举
-```				// 并不是所以的浏览器都是照此实现
-				C Object.keys(参数)方法// 参数可以是实例,可以是原型
-				返回一个包含可枚举属性的字符串数组 ! 
-			2 访问器属性:(红宝书141页)
-
-
-		defineProperty()  修改属性默认的特性
-			方法接受3个参数: 属性所在的对象, 属性的名字, 一个描述符对象;
-			其中描述符对象的属性必须是configurable, enumerable, writeable, value ; // 除value,默认值为false
-			例: var person = {};
-			Object.defineProperty(person, "name", {
-				writable : false ,
-				value : "Nicholas"
-			})
-			alert(person.name); // "Nicholas"
-			person.name = "Greg";
-			alert(person.name); // "Nicholas"
 
 DOM对象
 	//页面中所有元素的根对象
@@ -3814,12 +3837,6 @@ getBoundingClientRect:  含有元素的bottom,height,left,right,top,width值
 
 >>> 适用Number和Boolean类型
 	所有new过的实例都是true, 例: new Boolean(false) == true
-
-
-
-
-
-
 
 
 
