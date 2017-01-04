@@ -2,12 +2,8 @@
 
 
 
-
-
 未 声明  
 未 初始化
-
-
 
 
 
@@ -521,15 +517,24 @@ console.dir();输出数组对象的详细信息，还！还可以在浏览器开
  
 
 递归函数：(自己调用自己的函数)
-	function box(n){
-		if(n==1||n==2){
-			return 1;	
-			//为了防止死循环，必须返回一次
+	函数声明的方法:
+		function box(n){
+			if(n==1||n==2){
+				return 1;	
+				//为了防止死循环，必须返回一次
+			}
+			return box(n-1)+box(n-2);
 		}
-		return box(n-1)+box(n-2);
-	}
-	alert(box(4)); //输出3
-
+		alert(box(4)); //输出3
+	函数表达式的方法:
+		var box = (function f(num){
+			if(num<=1){
+				return 1;
+			}else{
+				return num * f(num-1);
+			}
+		});
+	// 使用函数表达式, 首先创建一个f()的命名函数表达式, 然后将他赋值给变量box. 即便在其他情况下把函数赋值给另一个变量, 函数的名字f仍然有效, 所以递归调用照样能正确完成, 而且这种方法在严格和非严格模式下都行得通
 
 Array对象：
 数组： （重新定同名数组会覆盖，数据类型：object）
@@ -2877,7 +2882,7 @@ select()				添加/触发 select 事件
 submit()				添加/触发 submit 事件
 toggle()				在版本 1.9 中被移除。添加 click 事件之间要切换的两个或多个函数
 trigger()				触发绑定到被选元素的所有事件
-triggerHandler()			触发绑定到被选元素的指定事件上的所有函数
+triggerHandler()		触发绑定到被选元素的指定事件上的所有函数
 unbind()				从被选元素上移除添加的事件处理程序
 undelegate()			从现在或未来的被选元素上移除事件处理程序
 unload()				在版本 1.8 中被废弃。添加事件处理程序到 unload 事件
@@ -3335,7 +3340,7 @@ ecfo  再按tab健，意想不到的事发生
 			普通方法中的 this 会指向全局对象 window
 			构造函数中的 this 会指向自身
 
-		构造函数是深拷贝；即函数的实例相互之间不会受到影响
+		构造函数是深拷贝；即函数的实例相互之间不会受到影响; array
 
 		function People(){
 			this.one = "男人";
@@ -3640,6 +3645,10 @@ JS性能 及 内存问题
 			return prev + cur;
 		})
 
+第七章 函数表达式
+	在函数中为元素element绑定事件处理程序,  会产生闭包;  所以使用完毕后应销毁该元素的指向;
+
+
 DOM对象
 	//页面中所有元素的根对象
 			console.log(document);
@@ -3819,7 +3828,15 @@ WITH:
 isArray:
 	javascript中isArray方法可以判断某个值是否为数组，但这个方法只能使用在高版本的IE中，对于IE8及一下版本是不支持isArray方法的，本文章向大家介绍如何解决IE8不兼容isArray的方法
 
-
+延伸:
+	深拷贝数组: 
+		方法1: 		
+			var a = [1,"a",3];
+			var b = a.slice(0);
+			console.log(b) // [1, "a", 3]
+			b.push(1)
+			console.info(b) // [1, "a", 3, 1]
+			console.info(a) // [1, "a", 3]
 
 获得元素的style,框,盒子属性 对象
 getBoundingClientRect:  含有元素的bottom,height,left,right,top,width值
