@@ -1,4 +1,8 @@
 
+汇智网
+http://www.hubwiz.com/course/552762019964049d1872fc88/
+
+
 React 不同于mvc框架的 AngularJs；     React只有view； 需要和其他的框架结合才是完整的mvc
 
 
@@ -56,13 +60,30 @@ JSX 是一个看起来很像 XML 的 JavaScript 语法扩展。
 
 
 react创建元素并显示：
-//语法：React.createElement(type,[props],[children...]) - 在虚拟DOM上创建指定的React元素 ：必选的元素类型；可选的JSON对象；可选的这个元素的子元素(不限)
-    var demo = React.createElement(
-            "ul",
-            null,
-            React.createElement("li",null,"列表1"),
-            React.createElement("li",null,"列表2")
-    );
+/* 
+ 	语法1 ：React.createElement(type,[props],[children...]) - 在虚拟DOM上创建指定的React元素 ：必选的元素类型；可选的JSON对象；可选的这个元素的子元素(不限)
+	    var demo = React.createElement(
+	            "ul",
+	            null,
+	            React.createElement("li",null,"列表1"),
+	            React.createElement("li",null,"列表2")
+	    );
+ 	语法2 : createClass，如其名就是创建React组件对应的类，描述你将要创建组件的各种行为，其中只有当组件被渲染时需要输出的内容的render接口是必须实现的，其他都是可选：
+		var Hello = React.createClass({
+		    render: function() {
+		        return <div>Hello Taobao, Hello UED</div>;
+		    }
+		});
+	语法3 : createFactory，通过工厂方法创建React组件实例，在js里要实现工厂方法只需创建一个带type参数的createElement的绑定函数：
+		ReactElement.createFactory = function(type) {
+		  var factory = ReactElement.createElement.bind(null, type);
+		  return factory;
+		};
+		创建模式目的是隔离与简化创建组件的过程，模式的东西自然是可用可不用，如果需要批量创建某个组件时，可以通过工厂方法来实现：
+		var h = React.createFactory(Hello);
+		h({x:1})
+		h({x:2})
+		h({x:3})
 
 
 /* React.render(element,container,[callback]) - 将虚拟DOM上的对象渲染到真实DOM上:
@@ -73,10 +94,47 @@ callback 可选的函数，当渲染完成或更新后被执行
     React.render(element,document.querySelector("#content"));
 
 
+4.1 属性 : props
+
+4.2 内联样式: 
+	在React元素中声明样式，需要给出一个JSON对象，其字段对应样式名称，比如要渲染出 上面的HTML片段，需要这样：
+	//定义React组件
+		var myStyle = {
+		    width:"200px",
+		    height:"200px"
+		};
+		//JSX
+		var e = <div style={myStyle} />;
+		//JavaScript
+		var e = React.createElement(
+		    "div",{
+		        style : myStyle
+		    });
+		//render
+		React.render(e,querySelector("...")));    
+
+	可以设置可选的值: http://www.hubwiz.com/class/552762019964049d1872fc88
+
+4.3 记忆状态 : state
+	React的组件的确引入了状态机的概念，通过将组件划分为不同的状态，使组件具有 了一定的记忆能力：
+	state - 组件的状态变量
+		每个React组件实例都有一个state变量，用来保存组件的当前状态。可以在 任何时刻使用this.state读取当前状态。
+	getInitialState() - 设置组件初始状态
+		组件的实现者应当实现一个getInitialState()方法来设置组件的初始状态。 getInitialState()方法必须返回一个JSON对象或空值null， 这意味着即使你只需要一个简单的标志作为状态，比如true或false，也要把它放到JSON对象里。
+	setState(currentState) - 设置组件当前状态
+		尽管可以使用this.state来直接设置组件当前状态，但React要求我们使用 setState()方法来进行状态设置。这是因为，setState()方法会自动 地重新渲染组件，而这通常是我们所期望的。
+
+		参数currentState是一个JSON对象，不必包含状态变量的所有字段，setState()方法会 将这个参数值与当前状态this.sate进行合并，结果作为状态变量的新值。
 
 
 
 
+
+
+
+
+
+注意:对于供应商前缀（-webkit, -moz, -o, -ms），除了ms，其他都需要将首字母大写。 比如：-webkit-transition应当通过WebkitTransition来访问，然而-ms-transition 则需要通过msTransition来访问。
 
 
 在react 0.14前，浏览器端实现对jsx的编译依赖jsxtransformer.js 
@@ -85,13 +143,6 @@ callback 可选的函数，当渲染完成或更新后被执行
 但是以上只能用来测试学习react
 生产环境需要借助编译工具事先将jsx编译成js
 对应的这个工具也由react-tool更换为babel
-
-作者：王金亮
-链接：https://www.zhihu.com/question/37389040/answer/78688199
-来源：知乎
-著作权归作者所有，转载请联系作者获得授权。
-
-
 
 
 
@@ -104,4 +155,30 @@ callback 可选的函数，当渲染完成或更新后被执行
 
 AngularJS定义组件的方式和React截然不同。如果说HTML是一个轮子，AngularJS 的指令/Directive则是给这个轮子镶了个金边，而React，重新造了个轮子： JSX。
 
+◆ JSX 相关:	
+1. 注意：最简单开始学习 JSX 的方法就是使用浏览器端的JSXTransformer。我们强烈建议你不要在生产环境中使用它。你可以通过我们的命令行工具react-tools 包来预编译你的代码。
+2. React 的 JSX 里约定分别使用首字母大、小写来区分本地组件的类和 HTML 标签。
+   （1）、要渲染 HTML 标签，只需在 JSX 里使用小写字母开头的标签名。
+   （2）、要渲染 React 组件，只需创建一个大写字母开头的本地变量。
 
+◆ HTML 相关：
+	1. 原生 HTML 元素名以小写字母开头，而自定义的 React 类名以大写字母开头。
+
+◆移动平台相关: 
+	1. 如果需要在手机或平板等触摸设备上使用 React，需要调用 React.initializeTouchEvents(true); 启用触摸事件处理。     
+
+◆事件相关:
+	1. React 使用驼峰命名规范的方式给组件绑定事件处理器。
+	2. 利用 ref 属性给子组件命名，通过 this.refs 引用 DOM 节点。
+	3. 用回调函数作为属性（ props ）。          
+
+◆数据模型相关:
+	1. props 是不可变的(只读)，可以通过this.props 访问到。通过this.props 来访问传入组件的数据，键名就是对应的命名属性，也可以通过this.props.children 访问组件内嵌的任何元素。
+	2.state 是可变的,可以通过his.state 是组件私有的，可以通过调用this.setState() 来改变它。
+	3. getInitialState() 在组件的生命周期中仅执行一次，用于设置组件的初始化 state 。
+	4. componentDidMount 是一个组件渲染的时候被 React 自动调用的方法。
+	5. 一个限制: React 组件只能渲染单个根节点。如果你想要返回多个节点，它们必须被包含在同一个节点里。
+
+◆组件相关：
+	1. 通过 JavaScript 对象传递一些方法到 React.createClass() 来创建一个新的 React 组件。其中最重要的方法是render ，该方法返回一颗 React 组件树，这棵树最终将会渲染成 HTML 。
+	2. ReactDOM.render() 实例化根组件，启动框架，把标记注入到第二个参数指定的原生的 DOM 元素中。
