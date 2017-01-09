@@ -1,24 +1,11 @@
+
+
+
+
+
+
+
 1	先安装Web服务，通过命令yum groupinstall命令进行安装，建议用groupinstall而不用Install是因为groupinstall，会把该服务所有相关的服务包一起安装，这样不会有丢失。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
