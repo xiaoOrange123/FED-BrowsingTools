@@ -3958,6 +3958,29 @@ JQuery方法:
 		2 return的不是对象,则这个return被忽略;
 		3 new过后这个函数是一个对象;
 
+<<<<<<< HEAD
+=======
+
+	JQ AJAX获取数据:
+	/*$.get("./tsconfig.txt",function(data,status){
+        // data = JSON.stringify(data);
+        console.log("数据: " + data + "\n状态: " + status);
+        console.log( data[1])
+    });*/
+
+	/*    
+	$.ajax({
+        url : "./tsconfig.json",
+        type : "post", // 用get的方式获得数据的类型, 用post先传再拿
+        contentType : "application/json ; charset=utf-8", //发送信息至服务器时内容的编码类型
+        data : JSON.stringify(a),
+        success : function (data) {
+            console.log(data)
+        }
+    })*/
+
+2016-12-26 刷新
+>>>>>>> origin/master
 
 	JQ AJAX获取数据:
 	/*$.get("./tsconfig.txt",function(data,status){
