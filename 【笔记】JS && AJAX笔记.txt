@@ -4,7 +4,8 @@
 
 未 声明  
 未 初始化
-
+ 
+ 
 
 
 //代码执行顺序：
@@ -1237,12 +1238,13 @@ open() 中：
 	window.outerHeight:	显示浏览器窗口的大小
 
 .offsetWidth： 本身的宽度 + padding + margin +border；
-.offsetHeight：	
-
+.offsetHeight：
 .offsetLeft： 指的是当前的左坐标值（一般需要在css先设置position）
 .clientHeight：
 .clientWidth： 获取对象可见内容的宽度，不包括滚动条，不包括边框
 
+监测窗口大小发送改变:(窗口大小变化事件)
+window.onresize
 
 cookie的属性有哪些
     1、Expires – 过期时间。
@@ -1276,7 +1278,6 @@ Location 对象方法
 				如果参数是 false：会检测服务器上的文档是否已改变，如果文档已改变，reload() 会再次下载该文档。如果文档未改变，则该方法将从缓存中装载文档。	 
 				如果参数为true：从服务器上重新下载该文档
 	replace()	用新的文档替换当前文档。
-	
 
 
 History 对象（历史记录）：
@@ -1868,7 +1869,7 @@ toggle  是一个关键词，可以加在别的方法后面：
 		语法：
 		$(selector).animate({params},speed,callback);
 		params参数是必需的;定义形成动画的 CSS 属性,例：{left:'250px'}另：animate 有三个参数	：①执行的函数；②时间；③执行完后再执行的函数；逗号隔开
-		其中关于时间:三个单词：fast快的	slow慢的 normal正常的
+		其中关于时间:三个单词：fast快的	slow慢的 normal正常的, 单词的话需要字符串包裹
 
 	谨记：所有 HTML 元素都有一个静态位置,如需对位置进行操作，要记得首先把元素的 CSS position 属性设置为 relative、fixed 或 absolute！
 	且animate  无法改背景颜色
@@ -2402,10 +2403,11 @@ jQuery CSS 操作函数
 	offsetParent()	返回最近的定位祖先元素。
 	position()	返回第一个匹配元素相对于父元素的位置。
 	scrollLeft()	设置或返回匹配元素相对滚动条左侧的偏移。
-	scrollTop()	设置或返回匹配元素相对滚动条顶部的偏移。
+	scrollTop()	设置或返回匹配元素相对滚动条顶部的偏移。 
 	width()	设置或返回匹配元素的宽度。
 
-
+jquery获取元素到页面顶部距离的语句为：(是页面)
+$(selector).offset().top
 
 
 
@@ -2962,12 +2964,11 @@ onmouseup	script	当松开鼠标按钮时运行脚本
 onmousewheelNew	script	当转动鼠标滚轮时运行脚本
 onscrollNew	script	当滚动元素的滚动条时运行脚本
 
-
+获取及设置滚动条的位置: 
 scrollTop()  scrollLeft() :
 	document.documentElement.scrollTop || document.body.scrollTop
-
 	document.documentElement.scrollLeft || document.body.scrollLeft
-
+	其他浏览器可以用 window.pageYOffset 获取滚动条位置 (???)
 	document.documentElement // 兼容IE 火狐
 		IE浏览器认为页面开始整个HTML元素
 	document.body 	// 兼容谷歌
@@ -2977,9 +2978,14 @@ onscroll 事件在元素滚动条在滚动时触发。
 	window.onscroll=function(){}
 
 
+滚动: 
+FF和IE使用$("html").scrollTop()，Chrome则要使用$("body").scrollTop()
+文档回到顶部
+$("html,body").scrollTop(0)
 
 
-
+js获取页面元素距离浏览器工作区顶端的距离
+var eleScrollTop = element.offset().top - $(window).scrollTop();
 
 
 
@@ -3517,9 +3523,9 @@ JS性能 及 内存问题
 		h();
 		console.log(h);//2
 
-
-
-
+	关于代码执行优先级别：
+	先执行自增或者自减（++，－－），在执行运算符，运算符的优先级别为（+，－，×，/），在执行比较运算符，接着是赋值运算符，最后是三目运算符
+	自增或者自减运算符在变量前，先执行自增自减，再运行，在变量后，先运行在自增自减
 
 	call方法,apply方法,hind方法
 
@@ -3842,6 +3848,8 @@ isArray:
 getBoundingClientRect:  含有元素的bottom,height,left,right,top,width值
 
 
+
+
 后台访问基本类型值的过程:
 	例: 
 	var s1 = "some text";
@@ -3856,10 +3864,36 @@ getBoundingClientRect:  含有元素的bottom,height,left,right,top,width值
 	所有new过的实例都是true, 例: new Boolean(false) == true
 
 
+JQuery方法:
+	jQuery.fn.extend || jQuery.extend
+	1 jQuery.fn.extend:
+			jQuery扩展一个或多个实例属性和方法(主要用于扩展方法)。
+			demo:
+		jQuery.fn.extend({
+			min: function(a, b) { return a < b ? a : b; },
+			max: function(a, b) { return a > b ? a : b; }
+		});
+		jQuery.min(2,3); //  2 
+		jQuery.max(4,5); //  5
+
+	2 jQuery.extend:
+			用于将一个或多个对象的内容合并到目标对象。
+			也可以添加静态方法.
+			demo:
+		A : 
+		jQuery.extend({
+			min: function(a, b) { return a < b ? a : b; },
+			max: function(a, b) { return a > b ? a : b; }
+		});
+		jQuery.min(2,3); //  2 
+		jQuery.max(4,5); //  5
 
 
-
-
+		B : (后者被合并到前者)
+		var settings = { validate: false, limit: 5, name: "foo" }; 
+		var options = { validate: true, name: "bar" }; 
+		jQuery.extend(settings, options); 
+		结果：settings == { validate: true, limit: 5, name: "bar" }
 
 
 
@@ -3886,9 +3920,8 @@ getBoundingClientRect:  含有元素的bottom,height,left,right,top,width值
 	; 在美国 大写字母 排序 在小写字母之前
 	; if()else 和  for循环内的所有变量都是全局, 也有声明提前
 	;span	标签
-	不支持 width  何 height
+	不支持 width  和 height
 	margin 只支持右和左
-	padding 全部支持
 
 	;基本包装类型Array , String , Boolean
 		访问基本包装类型时:
@@ -3925,5 +3958,24 @@ getBoundingClientRect:  含有元素的bottom,height,left,right,top,width值
 		2 return的不是对象,则这个return被忽略;
 		3 new过后这个函数是一个对象;
 
-2016-12-26 刷新
 
+	JQ AJAX获取数据:
+	/*$.get("./tsconfig.txt",function(data,status){
+        // data = JSON.stringify(data);
+        console.log("数据: " + data + "\n状态: " + status);
+        console.log( data[1])
+    });*/
+
+	/*    
+	$.ajax({
+        url : "./tsconfig.json",
+        type : "post", // 用get的方式获得数据的类型, 用post先传再拿
+        contentType : "application/json ; charset=utf-8", //发送信息至服务器时内容的编码类型
+        data : JSON.stringify(a),
+        success : function (data) {
+            console.log(data)
+        }
+    })*/
+
+2016-12-26 刷新
+远程更改的与本地更改的是否都存在
