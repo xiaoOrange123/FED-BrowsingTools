@@ -1164,8 +1164,10 @@ JavaScript Window - 浏览器对象模型(BOM)：
 	甚至 HTML DOM 的 document 也是 window 对象的属性之一。
 
 2） 三种方法能够确定浏览器窗口的尺寸（浏览器的视口，不包括工具栏和滚动条）。
-	① window.outerWidth:	显示浏览器窗口的大小
-	window.outerHeight:	显示浏览器窗口的大小
+	① window.outerWidth:	显示浏览器窗口的大小(包括滚动条的浏览器的宽度)
+	window.outerHeight:		显示浏览器窗口的大小
+	document.body.clientWidth  减去了滚动条
+
 
 	② 对于Internet Explorer、Chrome、Firefox、Opera 以及 Safari：
 		window.innerHeight - 浏览器窗口的内部高度，包括滚动条
@@ -1185,6 +1187,13 @@ JS兼容性：（表示减去滚动条后显示浏览器文档的区域大小）
 	var h=window.innerHeight
 	|| document.documentElement.clientHeight
 	|| document.body.clientHeight;
+
+
+谷歌和360 的单位换算比不同
+当显示屏幕为1190时; 
+	360浏览器窗口百分百宽度, 能获得1190, 
+	谷歌浏览器窗口百分百宽度, 但能获得1536
+
 
 3）方法：
 prompt()	：
