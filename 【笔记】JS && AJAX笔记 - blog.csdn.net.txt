@@ -1281,19 +1281,9 @@ open() 中：
 
 .offsetWidth： 本身的宽度 + padding + margin +border；
 .offsetHeight：
-
-.offsetLeft: 指的是当前的左坐标值（一般需要在css先设置position）
-
+.offsetLeft： 指的是当前的左坐标值（一般需要在css先设置position）
 .clientHeight：
-.clientWidth: 获取对象可见内容的宽度(width + padding)，不包括滚动条，不包括边框和margin
-
-.offsetParent:
-offsetParent是个只读属性，返回最近显示指定位置的容器元素的引用。如果元素没有指定位置，最近的元素或者根元素（标准模式下是html，怪异模式下是body）就是offsetParent。当元素的style.display='none'时，offsetParent返回null。
-	浏览器兼容性
-    	在以WebKit为核心的浏览器上，如果元素是隐藏的（该元素或者上级元素style.display='none'）或者元素自身style.position='fixed'，那么就会返回null。
-    	在IE（9）上如元素style.position='fixed'，该属性就会返回null。（然而display:none不影响这个浏览器）
-
-
+.clientWidth： 获取对象可见内容的宽度，不包括滚动条，不包括边框
 
 监测窗口大小发送改变:(窗口大小变化事件)
 window.onresize
@@ -1760,9 +1750,6 @@ obj.style.position = "absolute";
 	IE的兼容:(在IE中的最后一个分号会被删除)
 	obj.style.cssText += " ;width:200px;position:absolute;left:100px;";　//这样便能解决在IE中出现的问题了
 
-	IE下事件必须要on；
-	
-	IE下没有捕获这个东西
 
 	call方法：
 		语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]]) 
@@ -2088,15 +2075,7 @@ toggle  是一个关键词，可以加在别的方法后面：
 		根据选择器检查当前匹配元素集合，如果存在至少一个匹配元素，则返回 true。反之则返回false
 		【】selector	字符串值，包含匹配元素的选择器表达式。
 
-	阻止事件冒泡：即阻止父级事件再发生
-		$(".son").click(function(e){
-			alert(1);
-			e.stopPropagation();
-			//参数e 和这行代码是重点
-		})
-		$(".father").click(function(){
-			alert(2);
-		})
+	
 
 	一个动作触发多个事件
 		jq的css方法立刻执行
@@ -2104,9 +2083,6 @@ toggle  是一个关键词，可以加在别的方法后面：
             $("p:eq(0)").css({"background":"red","padding":"5px"}); // 以json的形式设置多个值
             $("p:eq(1)").css("background","blue") // 设置单个值
         });
-   	 冒泡：
-   	 	当上级元素亦有事件时，子级元素触发的事件会同时引起上级元素触发；
- 		//IE下兼容:
 
 8 	请注意：函数参数 在前面的 效果全部完成后执行。在动画或其他特效中为了避免页面产生错误可以以参数的形式添加Callback函数。
 
@@ -2464,42 +2440,6 @@ $(selector).offset().top
 
 
 封装函数：
-	1)  封装+事件监听 window.onload = function(){
-			var div1 = document.getElementById("div1");
-			var div2 = document.getElementById("div2");
-			demo(div1,"click",function(){
-				alert(111);
-				//event.stopPropagation();
-				//阻止事件冒泡：即阻止父级事件再发生
-			});
-			function demo(objs,event,fn){
-				if(objs.attachEvent){
-					objs.attachEvent("on"+event,fn);
-					//IE下；注意2点：一个需要“on”，一个是不需要写false,默认就是和冒泡, 因为IE下没有捕获
-				}else{
-					objs.addEventListener("event",fn,false);
-					//其他浏览器，在用addEventListener时，不需要“on”，但需要false:事件冒泡
-				}
-			}
-		}
-		/*
-		 事件监听 使用这2个方法能解决 普通事件绑定会被覆盖的问题
-		*/
-		
-		移出事件句柄：
-		 removeEventListener() 方法用于移除由 addEventListener() 方法添加的事件句柄。
-		语法：
-		element.removeEventListener(event, function, useCapture)
-		其中：useCapture 可选。布尔值，指定移除事件句柄的阶段。分别为：true - 在捕获阶段移除事件句柄；false- 默认。在冒泡阶段移除事件句柄
-
-		兼容：
-		var x = document.getElementById("myDIV");
-		if (x.removeEventListener) {  // 所有浏览器，除了 IE 8 及更早IE版本
-			x.removeEventListener("mousemove", myFunction);
-		} else if (x.detachEvent) {  // IE 8 及更早IE版本
-    		x.detachEvent("onmousemove", myFunction);
-		}
-
 	2) 封装函数中使用 call() 方法，调用一个对象的一个方法，以另一个对象替换当前对象： 
 		add.call(sub,3,1);   
 		call方法：
@@ -2519,111 +2459,12 @@ $(selector).offset().top
 
 
 
-详细的关于事件监听：
-	//给一个对象绑定一个事件处理函数的第一种形式
-//obj.onclick = fn;
-function fn1() {
-	alert(this);
-}
-function fn2() {
-	alert(2);
-}
 
-//document.onclick = fn1;
-//document.onclick = fn2;	//会覆盖前面绑定fn1
-
-//给一个对象的同一个事件绑定多个不同的函数
-//给一个元素绑定事件函数的第二种形式
-
-事件处理机制；（IE只支持事件冒泡）http://www.jb51.net/article/42492.htm
-1）事件冒泡
-	1 捕获、目标、冒泡三个阶段
-	2 IE 6.0: div -> body -> html -> document
-	  Mozilla 1.0: div -> body -> html -> document -> window
-2）捕获型事件
-	事件从最不精确的对象(document 对象)开始触发，然后到最精确(也可以在窗口级别捕获事件，不过必须由开发人员特别指定)。
-3）DOM事件流：
-	1 同时支持两种事件模型：捕获型事件和冒泡型事件，但是，捕获型事件先发生。两种事件流会触及DOM中的所有对象，从document对象开始，也在document对象结束。
-	2 DOM事件模型最独特的性质是，文本节点也触发事件(在IE中不会)。
-简而言之：
-事件捕获
-当你使用事件捕获时，父级元素先触发，子级元素后触发，即div先触发，p后触发。
  
-事件冒泡
-当你使用事件冒泡时，子级元素先触发，父级元素后触发，即p先触发，div后触发。
-
-W3C模型
-W3C模型是将两者进行中和，在W3C模型中，任何事件发生时，先从顶层开始进行事件捕获，直到事件触发到达了事件源元素。然后，再从事件源往上进行事件冒泡，直到到达document。	
-/*
-ie：obj.attachEvent(事件名称，事件函数);
-	1.没有捕获
-	2.事件名称有on
-	3.事件函数执行的顺序：标准ie-》正序   非标准ie-》倒序
-	4.this指向window
-标准：obj.addEventListener(事件名称，事件函数，是否捕获);
-	1.有捕获
-	2.事件名称没有on
-	3.事件执行的顺序是正序
-	4.this触发该事件的对象
-*/
-程序员可以自己选择绑定事件时采用事件捕获还是事件冒泡，方法就是绑定事件时通过addEventListener函数，它有三个参数，第三个参数若是true，则表示采用事件捕获，若是false，则表示采用事件冒泡。
-ele.addEventListener('click',doSomething2,true)
-true=捕获
-false=冒泡
-：
-/*document.attachEvent('onclick', function() {
-	fn1.call(document);
-});
-document.attachEvent('onclick', fn2);*/
-
-//是否捕获 : 默认是false    false:冒泡 true：捕获
-
-/*document.addEventListener('click', fn1, false);
-document.addEventListener('click', fn2, false);*/
-
-function bind(obj, evname, fn) {
-	if (obj.addEventListener) {
-		obj.addEventListener(evname, fn, false);  //false采用事件冒泡 ，默认
-	} else {
-		obj.attachEvent('on' + evname, function() {   //事件名称需要on ，  此代码之前IE不支持事件捕获，但此时支持
-			fn.call(obj);
-		});
-	}
-}
-
-bind(document, 'click', fn1);
-bind(document, 'click', fn2);
 
 
-补充;
-传统绑定事件方式
-在一个支持W3C DOM的浏览器中，像这样一般的绑定事件方式，是采用的事件冒泡方式。
- 
-ele.onclick = doSomething2
- 
-IE浏览器
-如上面所说，IE只支持事件冒泡，不支持事件捕获，它也不支持addEventListener函数，不会用第三个参数来表示是冒泡还是捕获，它提供了另一个函数 attachEvent 。
-ele.attachEvent("onclick", doSomething2);
-附：事件冒泡（的过程）：事件从发生的目标（event.srcElement||event.target）开始，沿着文档逐层向上冒泡，到document为止。
- 
-事件的传播是可以阻止的：//stopPropagation不再派发事件。//阻止事件再发生，用作事件冒泡中； 
-	在W3c中，使用 stopPropagation()方法
-	在IE下设置 cancelBubble = true；
-在捕获的过程中stopPropagation()；后，后面的冒泡过程也不会发生了~
 
-阻止事件的默认行为，例如click <a>后的跳转~
-	在W3c中，使用 preventDefault()方法；
-	在IE下设置window.event.returnValue = false;
-
-$("div").click(function(){
-	alert("div被点击");
-	// preventDefault方法jq有, 原理在见下面文档
-	event.preventDefault();
-})
-
-initEvent()			初始化新创建的 Event 对象的属性。
-preventDefault()	通知浏览器不要执行与事件关联的默认动作。
-stopPropagation()	不再派发事件。//阻止事件再发生，用作事件冒泡中；    
+   
 如：
 <div><a></a></div>  ;  那么a标签添加stopPropagation 即可阻止div
 
@@ -2636,22 +2477,6 @@ stopPropagation()	不再派发事件。//阻止事件再发生，用作事件冒
 	//不冒泡并且不捕获的意思是 父级与子级同级事件互不干扰
 
 
-// jQuery封装的preventDefault方法, 常看全部搜索preventDefault:
-jQuery.Event.prototype = {
-	// 阻止元素发生默认的行为。
-	preventDefault: function() {
-		var e = event || window.event;
-
-		// if preventDefault exists run it on the original event:如果preventDefault存在运行在preventDefault事件
-		if ( e.preventDefault ) {
-			e.preventDefault();
-
-		// otherwise set the returnValue property of the original event to false (IE):否则事件的ReturnValue属性为false（IE）
-		} else {
-			e.returnValue = false;
-		}
-	},
-}
 1 for的大括号没有作用域, if的大括号有作用域(私有)
 2 return; === return undefined; // 都会返回undefined; "return;" : 也就是说function没有返回值
 
@@ -3815,21 +3640,8 @@ DOM对象
 			event.target
 
 		8 事件机制
-			//事件的监听器可以多次添加，不会覆盖; 否则会被覆盖
-			// addEventListener("click", function(){
-			// 	console.log(123);
-			// }, 1);
-			// addEventListener("click", function(){
-			// 	console.log(321);
-			// }, 1);
-			如果存在两个冒泡阶段的处理方法，则按代码的书写顺序触发
-
-			a.addEventListener("click"/*事件的名称，没有on*/, function(){
-				console.log("div capture");
-			}/*事件的处理方式*/, 1/*true为在事件捕获阶段执行，false为在事件冒泡阶段执行，如果不传则默认false*/);
-
-	Event事件
-	event.target 	指向当前dom对象,如果是个标签,会把整个标签返回
+			Event事件
+			event.target 	指向当前dom对象,如果是个标签,会把整个标签返回
 
 
 Location 对象 : 	
