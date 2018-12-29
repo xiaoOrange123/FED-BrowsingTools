@@ -83,4 +83,8 @@
     })
   }
 
+  // 缩小 文章/问题 里的图片
+  $('.img-wrap').each(function(ind, ele){
+	  $(ele).css('width', '30%')
+  })
 })();
