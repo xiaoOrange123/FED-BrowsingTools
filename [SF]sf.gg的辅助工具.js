@@ -22,34 +22,31 @@
   }
 
   // 假设在挖坟贴审核中 含有 `同问` , `请问` 等文本, 则选择 - 无意义的内容
-  if(location.href.indexOf('segmentfault.com/review/digtomb') >= 0){
+  if (location.href.indexOf('segmentfault.com/review/digtomb') >= 0) {
     if ($('.audit__content-fmt').size()) {
-      var filterKeyword = [
-        '同问',
-        '请问',
-        '同求',
-        '我也有',
-        '我也是',
-        '不知道题主解决了',
-        '请问现在解决了么',
-        '问题解决了吗',
-        '是否已经解决',
-        '题主解决了吗',
-        '你的解决了吗',
-        '楼主有解决了吗',
-        '问题解决了么',
-        '解决了吗',
-        '楼主什么原因啊',
-        '我也不明白啊'
-      ];
-      var hasKeyword = filterKeyword.some(function (elem, index) {
-        if ($('.audit__content-fmt:contains("' + elem + '")').length) {
-          return $('.audit__content-fmt:contains("' + elem + '")').length;
+      setTimeout(() => {
+        var filterKeyword = [
+          '同问',
+          '请问',
+          '同求',
+          '我也有',
+          '我也是',
+          '解决了吗',
+          '解决了么',
+          '怎么解决的',
+          '有找到解决办法吗',
+          '是否已经解决',
+          '什么原因啊'
+        ];
+        var hasKeyword = filterKeyword.some(function (elem, index) {
+          if ($('.audit__content-fmt:contains("' + elem + '")').length) {
+            return $('.audit__content-fmt:contains("' + elem + '")').length;
+          }
+        })
+        if (hasKeyword) {
+          $('.audit__reasons li').eq(2).click()
         }
-      })
-      if (hasKeyword) {
-        $('.audit__reasons li').eq(2).click()
-      }
+      }, 60);
     }
   }
 
@@ -84,7 +81,7 @@
   }
 
   // 缩小 文章/问题 里的图片
-  $('.img-wrap').each(function(ind, ele){
-	  $(ele).css('width', '30%')
+  $('.img-wrap').each(function (ind, ele) {
+    $(ele).css('width', '30%')
   })
 })();
